@@ -1,0 +1,759 @@
+index	bits	mask	match	mnemonic	format	operands	decoder_va	format_va
+0	16	0x78c1	0x0801	settar	[c%d] settar C6,C4,%d	const(7), sext((b[10:8]:b[5:1]))<<1	0x009fb2be	0x01901da5
+1	16	0x78c1	0x0800	brl	[c%d] brl %d	const(7), sext((b[10:8]:b[5:1]))<<1	0x009fb2fa	0x01901d98
+2	16	0x7ff8	0x0040	jmp	[c%d] jmp TAR	b[2:0]	0x009fb372	0x01901dbb
+3	16	0x7ff8	0x0148	jmpr	[c%d] jmpr LR	b[2:0]	0x009fb3a2	0x01901e19
+4	16	0x7ff8	0x0048	jmp	[c%d] jmp LR	b[2:0]	0x009fb3e2	0x01901dc9
+5	16	0x7ff8	0x0050	jmpl	[c%d] jmpl TAR	b[2:0]	0x009fb420	0x01901dd6
+6	16	0x7ff8	0x0068	jmpf	[c%d] jmpf LR	b[2:0]	0x009fb45e	0x01901df3
+7	16	0x7ff8	0x0058	jmpl	[c%d] jmpl LR	b[2:0]	0x009fb47c	0x01901de5
+8	16	0x7ff8	0x0070	jmpf	[c%d] jmpf C6,C2:C4,TAR	b[2:0]	0x009fb4aa	0x01901e01
+9	16	0x7fc0	0x0240	jmpf	[c%d] jmpf C%d,TAR	b[2:0], b[5:3]	0x009fb516	0x01901e27
+10	16	0x7ff8	0x0340	pi0	[c%d] pi0 	b[2:0]	0x009fb56a	0x01901e3a
+11	16	0x7ff8	0x0348	pi1	[c%d] pi1 	b[2:0]	0x009fb5aa	0x01901e45
+12	16	0x7ff8	0x0350	pi2	[c%d] pi2 	b[2:0]	0x009fb5ea	0x01901e50
+13	16	0x7ff8	0x0358	pi3	[c%d] pi3 	b[2:0]	0x009fb62a	0x01901e5b
+14	16	0x7ff8	0x0360	pi4	[c%d] pi4 	b[2:0]	0x009fb668	0x01901e66
+15	16	0x7ff8	0x0370	pi6	[c%d] pi6 	b[2:0]	0x009fb6a6	0x01901e7c
+16	16	0x7ff8	0x0368	pi5	[c%d] pi5 	b[2:0]	0x009fb6c4	0x01901e71
+17	16	0x7ff8	0x0378	pi7	[c%d] pi7 	b[2:0]	0x009fb6f2	0x01901e87
+18	16	0x7fc0	0x0540	mvclcas	[c%d] mvclcas C%d:C%d	b[2:0], b[5:3], b[5:3]+1	0x009fb764	0x01901ea8
+19	16	0x7fc0	0x0440	mvclovs	[c%d] mvclovs C%d:C%d	b[2:0], b[5:3], b[5:3]+1	0x009fb7be	0x01901e92
+20	16	0x7ff8	0x0640	sc0	[c%d] sc0 	b[2:0]	0x009fb81c	0x01901ebe
+21	16	0x7ff8	0x0648	sc1	[c%d] sc1 	b[2:0]	0x009fb85c	0x01901ec9
+22	16	0x7ff8	0x0650	sc2	[c%d] sc2 	b[2:0]	0x009fb89c	0x01901ed4
+23	16	0x7ff8	0x0658	sc3	[c%d] sc3 	b[2:0]	0x009fb8dc	0x01901edf
+24	16	0x7ff8	0x0660	sc4	[c%d] sc4 	b[2:0]	0x009fb91c	0x01901eea
+25	16	0x7ff8	0x0668	sc5	[c%d] sc5 	b[2:0]	0x009fb95c	0x01901ef5
+26	16	0x7ff8	0x0670	sc6	[c%d] sc6 	b[2:0]	0x009fb99c	0x01901f00
+27	16	0x7ff8	0x0678	sc7	[c%d] sc7 	b[2:0]	0x009fb9dc	0x01901f0b
+28	16	0x7ff8	0x0740	setbb	[c%d] setbb TAR	b[2:0]	0x009fba1c	0x01901f16
+29	16	0x7ff8	0x0748	setbb	[c%d] setbb LR	b[2:0]	0x009fba5a	0x01901f26
+30	16	0x7ff8	0x0770	vcchk	[c%d] vcchk 	b[2:0]	0x009fba98	0x01901f40
+31	16	0x7ff8	0x0768	rti	[c%d] rti 	b[2:0]	0x009fbab6	0x01901f35
+32	16	0x7ff8	0x0778	nop	[c%d] nop 	b[2:0]	0x009fbae4	0x01901f4d
+33	16	0x78e0	0x0840	add	[c%d] add SP,%d	const(7), sext((b[10:8]:b[4:0]))<<3	0x009fbb42	0x01901f58
+34	16	0x78c0	0x0080	add	[c%d] add R%d,R%d,R%d	const(7), b[5:3], b[10:8], b[2:0]	0x009fbbda	0x01901f68
+35	16	0x78c0	0x0880	sub	[c%d] sub R%d,R%d,R%d	const(7), b[5:3], b[2:0], b[10:8]	0x009fbc52	0x01901f7e
+36	16	0x78c0	0x00c0	s1add	[c%d] s1add R%d,R%d,R%d	const(7), b[5:3], b[10:8], b[2:0]	0x009fbca8	0x01901f94
+37	16	0x78c0	0x08c0	s2add	[c%d] s2add R%d,R%d,R%d	const(7), b[5:3], b[10:8], b[2:0]	0x009fbd0e	0x01901fac
+38	16	0x7000	0x3000	mov	[c%d] mov R%d,%d	const(7), b[11:8], sext(b[7:0])	0x009fbd88	0x01901fc4
+39	16	0x70f0	0x1000	and	[c%d] and R%d,R%d	const(7), b[11:8], b[3:0]	0x009fbe0a	0x01902139
+40	16	0x70f0	0x1010	or	[c%d] or R%d,R%d	const(7), b[11:8], b[3:0]	0x009fbe6a	0x0190214b
+41	16	0x70f0	0x1020	andn	[c%d] andn R%d,R%d	const(7), b[11:8], b[3:0]	0x009fbeca	0x0190215c
+42	16	0x70f0	0x1030	xor	[c%d] xor R%d,R%d	const(7), b[11:8], b[3:0]	0x009fbf2a	0x0190216f
+43	16	0x70f0	0x1040	add	[c%d] add R%d,R%d	const(7), b[11:8], b[3:0]	0x009fbf8a	0x01902181
+44	16	0x70f0	0x1050	sub	[c%d] sub R%d,R%d	const(7), b[3:0], b[11:8]	0x009fbfea	0x01902193
+45	16	0x70f0	0x1060	rsub	[c%d] rsub R%d,R%d	const(7), b[11:8], b[3:0]	0x009fc04a	0x019021a5
+46	16	0x70f0	0x2000	tstz	[c%d] tstz C6,R%d,R%d	const(7), b[11:8], b[3:0]	0x009fc0aa	0x01901fd5
+47	16	0x70f0	0x2010	tstn	[c%d] tstn C6,R%d,R%d	const(7), b[11:8], b[3:0]	0x009fc10a	0x01901feb
+48	16	0x70f0	0x2020	cmpeq	[c%d] cmpeq C6,R%d,R%d	const(7), b[11:8], b[3:0]	0x009fc16a	0x01902001
+49	16	0x70f0	0x2030	cmpne	[c%d] cmpne C6,R%d,R%d	const(7), b[11:8], b[3:0]	0x009fc1ca	0x01902018
+50	16	0x70f0	0x2040	cmpgt	[c%d] cmpgt C6,R%d,R%d	const(7), b[11:8], b[3:0]	0x009fc22a	0x0190202f
+51	16	0x70f0	0x2050	cmple	[c%d] cmple C6,R%d,R%d	const(7), b[11:8], b[3:0]	0x009fc28a	0x01902046
+52	16	0x70f0	0x2060	cmpge	[c%d] cmpge C6,R%d,R%d	const(7), b[11:8], b[3:0]	0x009fc2ea	0x0190205d
+53	16	0x70f0	0x2070	cmplt	[c%d] cmplt C6,R%d,R%d	const(7), b[11:8], b[3:0]	0x009fc34a	0x01902074
+54	16	0x70f0	0x2080	tstz	[c%d] tstz C6,R%d,%d	const(7), b[11:8], b[3:0]	0x009fc3aa	0x0190208b
+55	16	0x70f0	0x2090	tstn	[c%d] tstn C6,R%d,%d	const(7), b[11:8], b[3:0]	0x009fc40a	0x019020a0
+56	16	0x70f0	0x20a0	cmpeq	[c%d] cmpeq C6,R%d,%d	const(7), b[11:8], sext(b[3:0])	0x009fc46a	0x019020b5
+57	16	0x70f0	0x20b0	cmpne	[c%d] cmpne C6,R%d,%d	const(7), b[11:8], sext(b[3:0])	0x009fc4ca	0x019020cb
+58	16	0x70f0	0x20c0	cmpgt	[c%d] cmpgt C6,R%d,%d	const(7), b[11:8], sext(b[3:0])	0x009fc52a	0x019020e1
+59	16	0x70f0	0x20e0	cmpge	[c%d] cmpge C6,R%d,%d	const(7), b[11:8], sext(b[3:0])	0x009fc588	0x0190210d
+60	16	0x70f0	0x20d0	cmple	[c%d] cmple C6,R%d,%d	const(7), b[11:8], sext(b[3:0])	0x009fc5c6	0x019020f7
+61	16	0x70f0	0x20f0	cmplt	[c%d] cmplt C6,R%d,%d	const(7), b[11:8], sext(b[3:0])	0x009fc614	0x01902123
+62	16	0x7ff0	0x1170	mov	[c%d] mov R%d,LR	const(7), b[3:0]	0x009fc674	0x019021ca
+63	16	0x7ff0	0x1070	mov	[c%d] mov R%d,TAR	const(7), b[3:0]	0x009fc6ac	0x019021b8
+64	16	0x7ef0	0x1270	mov	[c%d] mov R%d,MH%d	const(7), b[3:0], b[8]	0x009fc724	0x019021db
+65	16	0x7ff0	0x1570	mov	[c%d] mov LR,R%d	const(7), b[3:0]	0x009fc774	0x01902200
+66	16	0x7ff0	0x1470	mov	[c%d] mov TAR,R%d	const(7), b[3:0]	0x009fc7ac	0x019021ee
+67	16	0x7ef0	0x1670	mov	[c%d] mov MH%d,R%d	const(7), b[8], b[3:0]	0x009fc818	0x01902211
+68	16	0x70ff	0x1081	jloop	[c%d] jloop C6,C2:C4,TAR,R%d	const(7), b[11:8]	0x009fc884	0x01902224
+69	16	0x70ff	0x1084	extb	[c%d] extb R%d	const(7), b[11:8]	0x009fc8bc	0x01902241
+70	16	0x70ff	0x1086	exth	[c%d] exth R%d	const(7), b[11:8]	0x009fc8fc	0x01902260
+71	16	0x70ff	0x1085	extbu	[c%d] extbu R%d	const(7), b[11:8]	0x009fc924	0x01902250
+72	16	0x70ff	0x1087	exthu	[c%d] exthu R%d	const(7), b[11:8]	0x009fc95c	0x0190226f
+73	16	0x70f8	0x1088	jloop	[c%d] jloop C6,C%d,TAR,R%d	const(7), b[2:0], b[11:8]	0x009fc9d2	0x0190227f
+74	16	0x70f0	0x10a0	asl	[c%d] asl R%d,%d	const(7), b[11:8], b[3:0]	0x009fca48	0x019022ac
+75	16	0x70f0	0x10b0	asr	[c%d] asr R%d,%d	const(7), b[11:8], b[3:0]	0x009fca86	0x019022bd
+76	16	0x70f0	0x1090	rsub	[c%d] rsub R%d,%d	const(7), b[11:8], sext(b[3:0])	0x009fcad4	0x0190229a
+77	16	0x70e0	0x10e0	mov	[c%d] mov R%d,R%d	const(7), b[11:8], b[4:0]	0x009fcb48	0x019022df
+78	16	0x70e0	0x10c0	add	[c%d] add R%d,%d	const(7), b[11:8], sext(b[4:0])	0x009fcb96	0x019022ce
+79	16	0x78c0	0x4000	ld	[c%d] ld R%d,(R%d,%d)	const(7), b[2:0], b[10:8], b[5:3]<<2	0x009fcc28	0x019022f1
+80	16	0x78c0	0x4800	ldh	[c%d] ldh R%d,(R%d,%d)	const(7), b[2:0], b[10:8], b[5:3]<<1	0x009fcca0	0x0190231d
+81	16	0x78c0	0x4040	st	[c%d] st (R%d,%d),R%d	const(7), b[10:8], b[5:3]<<2, b[2:0]	0x009fccf6	0x01902307
+82	16	0x78c0	0x4840	sth	[c%d] sth (R%d,%d),R%d	const(7), b[10:8], b[5:3]<<1, b[2:0]	0x009fcd5c	0x01902334
+83	16	0x70e1	0x40a1	stp	[c%d] stp (SP,%d),R%d:R%d	const(7), b[11:8]<<3, b[4:1]<<1, b[4:1]<<1+1	0x009fcdf0	0x01902365
+84	16	0x70e1	0x40a0	ldp	[c%d] ldp R%d:R%d,(SP,%d)	const(7), b[4:1]<<1, b[4:1]<<1+1, b[11:8]<<3	0x009fce64	0x0190234b
+85	16	0x70f1	0x40c0	ldhp	[c%d] ldhp R%d:R%d,(R%d+)	const(7), b[3:1]<<1, b[3:1]<<1+1, b[11:8]	0x009fceea	0x0190237f
+86	16	0x70f1	0x40d0	ldp	[c%d] ldp R%d:R%d,(R%d+)	const(7), b[3:1]<<1, b[3:1]<<1+1, b[11:8]	0x009fcf36	0x019023b3
+87	16	0x70f1	0x40c1	sthp	[c%d] sthp (R%d+),R%d:R%d	const(7), b[11:8], b[3:1]<<1, b[3:1]<<1+1	0x009fcfc8	0x01902399
+88	16	0x70f1	0x40d1	stp	[c%d] stp (R%d+),R%d:R%d	const(7), b[11:8], b[3:1]<<1, b[3:1]<<1+1	0x009fd02c	0x019023cc
+89	16	0x70ff	0x40e1	stp	[c%d] stp (SP,%d),LR:SVR	const(7), b[11:8]<<3	0x009fd086	0x019023fe
+90	16	0x70ff	0x40e0	ldp	[c%d] ldp LR:SVR,(SP,%d)	const(7), b[11:8]<<3	0x009fd0be	0x019023e5
+91	16	0x70f0	0x5080	ldh	[c%d] ldh R%d,(GP,%d)	const(7), b[3:0], b[11:8]<<1	0x009fd136	0x01902417
+92	16	0x70f0	0x5090	sth	[c%d] sth (GP,%d),R%d	const(7), b[11:8]<<1, b[3:0]	0x009fd196	0x0190242d
+93	16	0x70f0	0x50a0	ldh	[c%d] ldh R%d,(SP,%d)	const(7), b[3:0], b[11:8]<<1	0x009fd1f6	0x01902443
+94	16	0x70f0	0x50b0	sth	[c%d] sth (SP,%d),R%d	const(7), b[11:8]<<1, b[3:0]	0x009fd256	0x01902459
+95	16	0x70f0	0x50c0	ld	[c%d] ld R%d,(GP,%d)	const(7), b[3:0], b[11:8]<<2	0x009fd2b6	0x0190246f
+96	16	0x70f0	0x50e0	ld	[c%d] ld R%d,(SP,%d)	const(7), b[3:0], b[11:8]<<2	0x009fd314	0x01902499
+97	16	0x70f0	0x50d0	st	[c%d] st (GP,%d),R%d	const(7), b[11:8]<<2, b[3:0]	0x009fd352	0x01902484
+98	16	0x70f0	0x50f0	st	[c%d] st (SP,%d),R%d	const(7), b[11:8]<<2, b[3:0]	0x009fd3a0	0x019024ae
+99	32	0x78e0c000	0x68000000	brl	[c%d] brl %d	b[2:0], sext((b[26:24]:b[20:16]:b[13:3]))<<1	0x009fd40a	0x01901d98
+100	32	0x78e0c000	0x60000000	br	[c%d] br %d	b[2:0], sext((b[26:24]:b[20:16]:b[13:3]))<<1	0x009fd44a	0x019024c3
+101	32	0x7ff0c000	0x70000000	dbgm3	[c%d] dbgm3 %d	b[2:0], (b[19:16]:b[13:3])	0x009fd4c2	0x019024de
+102	32	0x7ff0c000	0x71000000	dbgm1	[c%d] dbgm1 %d	b[2:0], (b[19:16]:b[13:3])	0x009fd51a	0x019024fc
+103	32	0x7ff0c000	0x70100000	dbgm2	[c%d] dbgm2 %d	b[2:0], (b[19:16]:b[13:3])	0x009fd552	0x019024ed
+104	32	0x7ff0c000	0x71100000	dbgm4	[c%d] dbgm4 %d	b[2:0], (b[19:16]:b[13:3])	0x009fd59a	0x019024cf
+105	32	0x7ee0c000	0x72000000	dbgm0	[c%d] dbgm0 %d	b[2:0], (b[24]:b[20:16]:b[13:3])	0x009fd608	0x0190250b
+106	32	0x7fe0c000	0x74000000	add	[c%d] add SP,%d	b[2:0], sext((b[20:16]:b[13:3]))<<3	0x009fd674	0x01901f58
+107	32	0x7ff0c000	0x76000000	brl	[c%d] brl LR,%d	b[2:0], (b[19:16]:b[13:3])<<1	0x009fd6d4	0x0190251a
+108	32	0x7fe0c000	0x77000000	sethi	[c%d] sethi LR,%d	b[2:0], (b[20:16]:b[13:3])	0x009fd734	0x0190252a
+109	32	0x7ce0c000	0x7c000000	addu	[c%d] addu R%d,SP,%d	b[2:0], b[20:16], (b[25:24]:b[13:3])	0x009fd7ae	0x01902551
+110	32	0x7ce0c000	0x78000000	addu	[c%d] addu R%d,GP,%d	b[2:0], b[20:16], (b[25:24]:b[13:3])	0x009fd80a	0x0190253c
+111	32	0x60e0ff00	0x60004000	add	[c%d] add R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fd8b8	0x01901f68
+112	32	0x60e0ff00	0x60004100	addc	[c%d] addc R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fd942	0x01902566
+113	32	0x60e0ff00	0x60004200	adds	[c%d] adds R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fd9cc	0x0190257d
+114	32	0x60e0ff00	0x60004300	addsr	[c%d] addsr R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fda56	0x01902594
+115	32	0x60e0ff00	0x60004400	addvw	[c%d] addvw R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fdae0	0x019025ac
+116	32	0x60e0ff00	0x60004500	addvh	[c%d] addvh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fdb6a	0x019025c4
+117	32	0x60e0ff00	0x60004700	addmsk	[c%d] addmsk R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fdbf4	0x019025dc
+118	32	0x60e0ff00	0x60004800	sub	[c%d] sub R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fdc7e	0x01901f7e
+119	32	0x60e0ff00	0x60004900	subc	[c%d] subc R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fdd08	0x019025f5
+120	32	0x60e0ff00	0x60004a00	subs	[c%d] subs R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fdd92	0x0190260c
+121	32	0x60e0ff00	0x60004c00	subvw	[c%d] subvw R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fde1c	0x01902623
+122	32	0x60e0ff00	0x60004d00	subvh	[c%d] subvh R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fdea6	0x0190263b
+123	32	0x60e0ff00	0x60004f00	submsk	[c%d] submsk R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fdf30	0x01902653
+124	32	0x60e0ff00	0x60005000	vaddh	[c%d] vaddh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fdfba	0x0190266c
+125	32	0x60e0ff00	0x60005100	vxaddh	[c%d] vxaddh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fe044	0x01902684
+126	32	0x60e0ff00	0x60005200	vhaddh	[c%d] vhaddh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fe0ce	0x0190269d
+127	32	0x60e0ff00	0x60005300	vladdh	[c%d] vladdh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fe158	0x019026b6
+128	32	0x60e0ff00	0x60005400	vaddhvh	[c%d] vaddhvh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fe1e2	0x019026cf
+129	32	0x60e0ff00	0x60005500	vxaddhvh	[c%d] vxaddhvh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fe26c	0x019026e9
+130	32	0x60e0ff00	0x60005600	vhaddhvh	[c%d] vhaddhvh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fe2f6	0x01902704
+131	32	0x60e0ff00	0x60005700	vladdhvh	[c%d] vladdhvh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fe380	0x0190271f
+132	32	0x60e0ff00	0x60005800	vsubh	[c%d] vsubh R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fe40a	0x0190273a
+133	32	0x60e0ff00	0x60005900	vxsubh	[c%d] vxsubh R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fe494	0x01902752
+134	32	0x60e0ff00	0x60005a00	vhsubh	[c%d] vhsubh R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fe51e	0x0190276b
+135	32	0x60e0ff00	0x60005b00	vlsubh	[c%d] vlsubh R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fe5a8	0x01902784
+136	32	0x60e0ff00	0x60005c00	vsubhvh	[c%d] vsubhvh R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fe632	0x0190279d
+137	32	0x60e0ff00	0x60005d00	vxsubhvh	[c%d] vxsubhvh R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fe6bc	0x019027b7
+138	32	0x60e0ff00	0x60005e00	vhsubhvh	[c%d] vhsubhvh R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fe746	0x019027d2
+139	32	0x60e0ff00	0x60005f00	vlsubhvh	[c%d] vlsubhvh R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fe7d0	0x019027ed
+140	32	0x60e0ff00	0x60006000	vaddb	[c%d] vaddb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fe85a	0x01902808
+141	32	0x60e0ff00	0x60006100	vaddbvb	[c%d] vaddbvb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fe8e4	0x01902820
+142	32	0x60e0ff00	0x60006200	vaddsh	[c%d] vaddsh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fe96e	0x0190283a
+143	32	0x60e0ff00	0x60006300	vaddsrh	[c%d] vaddsrh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fe9f8	0x01902853
+144	32	0x60e0ff00	0x60006400	vsubb	[c%d] vsubb R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009fea82	0x0190286d
+145	32	0x60e0ff00	0x60006500	vsubbvb	[c%d] vsubbvb R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009feb0c	0x01902885
+146	32	0x60e0ff00	0x60006600	vsubsh	[c%d] vsubsh R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009feb96	0x0190289f
+147	32	0x60e0ff00	0x60006800	s1add	[c%d] s1add R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fec20	0x01901f94
+148	32	0x60e0ff00	0x60006900	s2add	[c%d] s2add R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fecaa	0x01901fac
+149	32	0x60e0ff00	0x60006a00	vaddsb	[c%d] vaddsb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fed34	0x019028b8
+150	32	0x60e0ff00	0x60006c00	and	[c%d] and R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fedbe	0x019028eb
+151	32	0x60e0ff00	0x60006b00	vaddsrb	[c%d] vaddsrb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fee28	0x019028d1
+152	32	0x60e0ff00	0x60006d00	andn	[c%d] andn R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009feea2	0x01902901
+153	32	0x60e0ff00	0x60006e00	or	[c%d] or R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fef2c	0x01902918
+154	32	0x60e0ff00	0x60006f00	xor	[c%d] xor R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009fefb6	0x0190292d
+155	32	0x60e0ff00	0x60007000	max	[c%d] max R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009ff040	0x01902943
+156	32	0x60e0ff00	0x60007100	min	[c%d] min R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009ff0ca	0x01902959
+157	32	0x60e0ff00	0x60007200	vmaxh	[c%d] vmaxh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009ff154	0x0190296f
+158	32	0x60e0ff00	0x60007300	vminh	[c%d] vminh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009ff1de	0x01902987
+159	32	0x60e0ff00	0x60007500	vminb	[c%d] vminb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009ff268	0x019029b7
+160	32	0x60e0ff00	0x60007400	vmaxb	[c%d] vmaxb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009ff2d0	0x0190299f
+161	32	0x60e0ff00	0x60007600	vsel	[c%d] vsel R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009ff348	0x019029cf
+162	32	0x60e0ff08	0x60007800	movp	[c%d] movp R%d:R%d,R%d,R%d	b[2:0], b[7:4]<<1, b[7:4]<<1+1, b[28:24], b[20:16]	0x009ff3fe	0x019029e6
+163	32	0x60e0ff00	0x60007900	vasubb	[c%d] vasubb R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009ff4b4	0x01902a01
+164	32	0x60e0ff00	0x60007a00	addarvw	[c%d] addarvw R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009ff53e	0x01902a1a
+165	32	0x60e0ff00	0x60007c00	vaddhvc	[c%d] vaddhvc R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009ff5c8	0x01902a50
+166	32	0x60e0ff00	0x60007b00	vasubabsb	[c%d] vasubabsb R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x009ff630	0x01902a34
+167	32	0x60e0ff00	0x60007d00	vaddrhvc	[c%d] vaddrhvc R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x009ff6a8	0x01902a6a
+168	32	0x60e0fff8	0x60007e00	abs	[c%d] abs R%d,R%d	b[2:0], b[20:16], b[28:24]	0x009ff740	0x01902a85
+169	32	0x60e0fff8	0x60007e08	absvw	[c%d] absvw R%d,R%d	b[2:0], b[20:16], b[28:24]	0x009ff7b2	0x01902a97
+170	32	0x60e0fff8	0x60007e10	vabshvh	[c%d] vabshvh R%d,R%d	b[2:0], b[20:16], b[28:24]	0x009ff824	0x01902aab
+171	32	0x60e0fff8	0x60007e18	absvh	[c%d] absvh R%d,R%d	b[2:0], b[20:16], b[28:24]	0x009ff896	0x01902ac1
+172	32	0x60e0fff8	0x60007e20	vaabsbvb	[c%d] vaabsbvb R%d,R%d	b[2:0], b[20:16], b[28:24]	0x009ff908	0x01902ad5
+173	32	0x60e0fff8	0x60007e40	vsumh	[c%d] vsumh R%d,R%d	b[2:0], b[20:16], b[28:24]	0x009ff97a	0x01902aec
+174	32	0x60e0fff8	0x60007e50	vsumh2u	[c%d] vsumh2u R%d,R%d	b[2:0], b[20:16], b[28:24]	0x009ff9ec	0x01902b00
+175	32	0x60e0fff8	0x60007e58	vsumrh2u	[c%d] vsumrh2u R%d,R%d	b[2:0], b[20:16], b[28:24]	0x009ffa5e	0x01902b16
+176	32	0x60e0fff8	0x60007e80	vcmpeqh	[c%d] vcmpeqh R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009ffad0	0x01902b2d
+177	32	0x60e0fff8	0x60007e88	vcmpneh	[c%d] vcmpneh R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009ffb42	0x01902b43
+178	32	0x60e0fff8	0x60007e90	vcmpgth	[c%d] vcmpgth R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009ffbb4	0x01902b59
+179	32	0x60e0fff8	0x60007e98	vcmpleh	[c%d] vcmpleh R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009ffc26	0x01902b6f
+180	32	0x60e0fff8	0x60007ea0	vcmpgeh	[c%d] vcmpgeh R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009ffc98	0x01902b85
+181	32	0x60e0fff8	0x60007ea8	vcmplth	[c%d] vcmplth R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009ffd0a	0x01902b9b
+182	32	0x60e0fff8	0x60007ec0	vcmpeqb	[c%d] vcmpeqb R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009ffd7c	0x01902bb1
+183	32	0x60e0fff8	0x60007ec8	vcmpneb	[c%d] vcmpneb R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009ffdee	0x01902bc7
+184	32	0x60e0fff8	0x60007ed0	vcmpgtb	[c%d] vcmpgtb R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009ffe60	0x01902bdd
+185	32	0x60e0fff8	0x60007ee0	vcmpgeb	[c%d] vcmpgeb R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009ffed2	0x01902c09
+186	32	0x60e0fff8	0x60007ed8	vcmpleb	[c%d] vcmpleb R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009fff22	0x01902bf3
+187	32	0x60e0fff8	0x60007ee8	vcmpltb	[c%d] vcmpltb R%d,R%d	b[2:0], b[28:24], b[20:16]	0x009fff82	0x01902c1f
+188	32	0x7fe0fff8	0x60007f08	mov	[c%d] mov R%d,LR	b[2:0], b[20:16]	0x00a00010	0x019021ca
+189	32	0x7fe0fff8	0x60007f20	mov	[c%d] mov R%d,CFR	b[2:0], b[20:16]	0x00a00058	0x01902c47
+190	32	0x7fe0fff8	0x60007f00	mov	[c%d] mov R%d,TAR	b[2:0], b[20:16]	0x00a00090	0x019021b8
+191	32	0x7fe0fff8	0x60007f10	mov	[c%d] mov R%d,SVR	b[2:0], b[20:16]	0x00a000d8	0x01902c35
+192	32	0x7fe0fff0	0x60007f50	mov	[c%d] mov R%d,ML%d	b[2:0], b[20:16], b[3]	0x00a00160	0x01902c59
+193	32	0x7fe0fff0	0x60007f40	mov	[c%d] mov R%d,MH%d	b[2:0], b[20:16], b[3]	0x00a001c4	0x019021db
+194	32	0x7fe0fff8	0x60007fa0	mov	[c%d] mov R%d,CFR0	b[2:0], b[20:16]	0x00a00246	0x01902c6c
+195	32	0x7fe0fff8	0x61007f08	mov	[c%d] mov LR,R%d	b[2:0], b[20:16]	0x00a002b0	0x01902200
+196	32	0x7fe0fff8	0x60007fb0	mov	[c%d] mov R%d,CFR2	b[2:0], b[20:16]	0x00a0030a	0x01902c92
+197	32	0x7fe0fff8	0x61007f20	mov	[c%d] mov CFR,R%d	b[2:0], b[20:16]	0x00a00354	0x01902cca
+198	32	0x7fe0fff8	0x61007f00	mov	[c%d] mov TAR,R%d	b[2:0], b[20:16]	0x00a0038e	0x019021ee
+199	32	0x7fe0fff8	0x61007f10	mov	[c%d] mov SVR,R%d	b[2:0], b[20:16]	0x00a003d6	0x01902cb8
+200	32	0x7fe0fff8	0x60007fa8	mov	[c%d] mov R%d,CFR1	b[2:0], b[20:16]	0x00a0040e	0x01902c7f
+201	32	0x7fe0fff8	0x60007fb8	mov	[c%d] mov R%d,CFR3	b[2:0], b[20:16]	0x00a00456	0x01902ca5
+202	32	0x7fe0fff0	0x61007f50	mov	[c%d] mov ML%d,R%d	b[2:0], b[3], b[20:16]	0x00a004ce	0x01902cdc
+203	32	0x7fe0fff0	0x61007f40	mov	[c%d] mov MH%d,R%d	b[2:0], b[3], b[20:16]	0x00a0052e	0x01902211
+204	32	0x7fe0fff8	0x61007fa0	mov	[c%d] mov CFR0,R%d	b[2:0], b[20:16]	0x00a005a0	0x01902cef
+205	32	0x7fe0fff8	0x61007fb0	mov	[c%d] mov CFR2,R%d	b[2:0], b[20:16]	0x00a005f8	0x01902d15
+206	32	0x7fe0fff8	0x61007fa8	mov	[c%d] mov CFR1,R%d	b[2:0], b[20:16]	0x00a00630	0x01902d02
+207	32	0x7fe0fff8	0x61007fb8	mov	[c%d] mov CFR3,R%d	b[2:0], b[20:16]	0x00a00678	0x01902d28
+208	32	0x62e0ffc0	0x62007f00	movcf	[c%d] movcf C%d,C%d,C%d,C%d	b[2:0], b[24]<<2, b[28:26], b[5:3], b[18:16]	0x00a00732	0x01902d3b
+209	32	0x7ffffff8	0x62007f80	pi0l	[c%d] pi0l 	b[2:0]	0x00a00792	0x01902d57
+210	32	0x7ffffff8	0x62007f88	pi1l	[c%d] pi1l 	b[2:0]	0x00a007d6	0x01902d63
+211	32	0x7ffffff8	0x62007f90	pi2l	[c%d] pi2l 	b[2:0]	0x00a0081a	0x01902d6f
+212	32	0x7ffffff8	0x62007f98	pi3l	[c%d] pi3l 	b[2:0]	0x00a0085e	0x01902d7b
+213	32	0x7ffffff8	0x62007fa0	pi4l	[c%d] pi4l 	b[2:0]	0x00a008a2	0x01902d87
+214	32	0x7ffffff8	0x62007fb0	pi6l	[c%d] pi6l 	b[2:0]	0x00a008f6	0x01902d9f
+215	32	0x7ffffff8	0x62047f80	vmpsleep	[c%d] vmpsleep 	b[2:0]	0x00a0093a	0x01902db7
+216	32	0x7ffffff8	0x62047f90	vmpwait	[c%d] vmpwait 	b[2:0]	0x00a0097e	0x01902dc7
+217	32	0x7ffffff8	0x62007fa8	pi5l	[c%d] pi5l 	b[2:0]	0x00a009a2	0x01902d93
+218	32	0x7ffffff8	0x62007fb8	pi7l	[c%d] pi7l 	b[2:0]	0x00a009d6	0x01902dab
+219	32	0x7ffffff8	0x62047fa0	vmpsus	[c%d] vmpsus 	b[2:0]	0x00a00a1a	0x01902dd6
+220	32	0x7ffffff8	0x62057f88	intd	[c%d] intd 	b[2:0]	0x00a00a5c	0x01902de4
+221	32	0x7ffffff8	0x62057fa8	inte	[c%d] inte 	b[2:0]	0x00a00a9e	0x01902dfd
+222	32	0x7ffffff8	0x62057f90	vmpdd	[c%d] vmpdd 	b[2:0]	0x00a00ac0	0x01902df0
+223	32	0x7ffffff8	0x62057fb0	vmpde	[c%d] vmpde 	b[2:0]	0x00a00af2	0x01902e09
+224	32	0x60e0c000	0x6000c000	sethi	[c%d] sethi R%d,%d	b[2:0], b[28:24], (b[20:16]:b[13:3])	0x00a00b72	0x01902e16
+225	32	0x60e0c000	0x60008000	mov	[c%d] mov R%d,%d	b[2:0], b[28:24], sext((b[20:16]:b[13:3]))	0x00a00bd2	0x01901fc4
+226	32	0x60e0fe00	0x60200000	tstzn	[c%d] tstzn C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a00c98	0x01902e29
+227	32	0x60e0fe00	0x60200200	tstzn	[c%d] tstzn C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a00d6a	0x01902e45
+228	32	0x60e0fe00	0x60200400	tstza	[c%d] tstza C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a00e26	0x01902e65
+229	32	0x60e0fe00	0x60200600	tstzo	[c%d] tstzo C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a00ee2	0x01902e85
+230	32	0x60e0fe00	0x60200800	tstnn	[c%d] tstnn C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a00f86	0x01902ea5
+231	32	0x60e0fe00	0x60200a00	tstnn	[c%d] tstnn C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a01042	0x01902ec1
+232	32	0x60e0fe00	0x60200c00	tstna	[c%d] tstna C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a010fe	0x01902ee1
+233	32	0x60e0fe00	0x60200e00	tstno	[c%d] tstno C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a011ba	0x01902f01
+234	32	0x60e0fe00	0x60201000	cmpeqn	[c%d] cmpeqn C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a0125e	0x01902f21
+235	32	0x60e0fe00	0x60201200	cmpeqn	[c%d] cmpeqn C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a0131a	0x01902f3e
+236	32	0x60e0fe00	0x60201400	cmpeqa	[c%d] cmpeqa C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a013d6	0x01902f5f
+237	32	0x60e0fe00	0x60201600	cmpeqo	[c%d] cmpeqo C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a01492	0x01902f80
+238	32	0x60e0fe00	0x60201800	cmpnen	[c%d] cmpnen C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a01536	0x01902fa1
+239	32	0x60e0fe00	0x60201a00	cmpnen	[c%d] cmpnen C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a015f2	0x01902fbe
+240	32	0x60e0fe00	0x60201c00	cmpnea	[c%d] cmpnea C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a016ae	0x01902fdf
+241	32	0x60e0fe00	0x60201e00	cmpneo	[c%d] cmpneo C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a0176a	0x01903000
+242	32	0x60e0fe00	0x60202000	cmpgtun	[c%d] cmpgtun C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a0180e	0x01903021
+243	32	0x60e0fe00	0x60202200	cmpgtun	[c%d] cmpgtun C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a018ca	0x0190303f
+244	32	0x60e0fe00	0x60202400	cmpgtua	[c%d] cmpgtua C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a01986	0x01903061
+245	32	0x60e0fe00	0x60202600	cmpgtuo	[c%d] cmpgtuo C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a01a42	0x01903083
+246	32	0x60e0fe00	0x60202800	cmpleun	[c%d] cmpleun C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a01ae6	0x019030a5
+247	32	0x60e0fe00	0x60202a00	cmpleun	[c%d] cmpleun C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a01ba2	0x019030c3
+248	32	0x60e0fe00	0x60202c00	cmpleua	[c%d] cmpleua C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a01c5e	0x019030e5
+249	32	0x60e0fe00	0x60202e00	cmpleuo	[c%d] cmpleuo C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a01d1a	0x01903107
+250	32	0x60e0fe00	0x60203000	cmpgeun	[c%d] cmpgeun C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a01dbe	0x01903129
+251	32	0x60e0fe00	0x60203200	cmpgeun	[c%d] cmpgeun C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a01e7a	0x01903147
+252	32	0x60e0fe00	0x60203400	cmpgeua	[c%d] cmpgeua C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a01f36	0x01903169
+253	32	0x60e0fe00	0x60203600	cmpgeuo	[c%d] cmpgeuo C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a01ff2	0x0190318b
+254	32	0x60e0fe00	0x60203800	cmpltun	[c%d] cmpltun C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a02096	0x019031ad
+255	32	0x60e0fe00	0x60203a00	cmpltun	[c%d] cmpltun C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a02152	0x019031cb
+256	32	0x60e0fe00	0x60203c00	cmpltua	[c%d] cmpltua C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a0220e	0x019031ed
+257	32	0x60e0fe00	0x60203e00	cmpltuo	[c%d] cmpltuo C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a022ca	0x0190320f
+258	32	0x60e0fe00	0x60204000	cmpgtn	[c%d] cmpgtn C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a0236e	0x01903231
+259	32	0x60e0fe00	0x60204200	cmpgtn	[c%d] cmpgtn C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a0242a	0x0190324e
+260	32	0x60e0fe00	0x60204400	cmpgta	[c%d] cmpgta C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a024e6	0x0190326f
+261	32	0x60e0fe00	0x60204600	cmpgto	[c%d] cmpgto C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a025a2	0x01903290
+262	32	0x60e0fe00	0x60204800	cmplen	[c%d] cmplen C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a02646	0x019032b1
+263	32	0x60e0fe00	0x60204a00	cmplen	[c%d] cmplen C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a02702	0x019032ce
+264	32	0x60e0fe00	0x60204c00	cmplea	[c%d] cmplea C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a027be	0x019032ef
+265	32	0x60e0fe00	0x60205000	cmpgen	[c%d] cmpgen C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a02862	0x01903331
+266	32	0x60e0fe00	0x60204e00	cmpleo	[c%d] cmpleo C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a028fe	0x01903310
+267	32	0x60e0fe00	0x60205200	cmpgen	[c%d] cmpgen C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a029aa	0x0190334e
+268	32	0x60e0fe00	0x60205400	cmpgea	[c%d] cmpgea C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a02a66	0x0190336f
+269	32	0x60e0fe00	0x60205600	cmpgeo	[c%d] cmpgeo C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a02b22	0x01903390
+270	32	0x60e0fe00	0x60205800	cmpltn	[c%d] cmpltn C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a02bc6	0x019033b1
+271	32	0x60e0fe00	0x60205a00	cmpltn	[c%d] cmpltn C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a02c82	0x019033ce
+272	32	0x60e0fe00	0x60205c00	cmplta	[c%d] cmplta C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a02d3e	0x019033ef
+273	32	0x60e0fe00	0x60205e00	cmplto	[c%d] cmplto C%d:C%d,R%d,R%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a02dfa	0x01903410
+274	32	0x60e0fe00	0x60208000	tstzn	[c%d] tstzn C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a02e9e	0x01903431
+275	32	0x60e0fe00	0x60208200	tstzn	[c%d] tstzn C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a02f5a	0x0190344c
+276	32	0x60e0fe00	0x60208400	tstza	[c%d] tstza C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a03016	0x0190346b
+277	32	0x60e0fe00	0x60208600	tstzo	[c%d] tstzo C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a030d2	0x0190348a
+278	32	0x60e0fe00	0x60208800	tstnn	[c%d] tstnn C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a03176	0x019034a9
+279	32	0x60e0fe00	0x60208a00	tstnn	[c%d] tstnn C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a03232	0x019034c4
+280	32	0x60e0fe00	0x60208c00	tstna	[c%d] tstna C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a032ee	0x019034e3
+281	32	0x60e0fe00	0x60208e00	tstno	[c%d] tstno C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a033aa	0x01903502
+282	32	0x60e0fe00	0x60209000	cmpeqn	[c%d] cmpeqn C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], sext(b[20:16]), b[8:6]	0x00a0344e	0x01903521
+283	32	0x60e0fe00	0x60209400	cmpeqa	[c%d] cmpeqa C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a0350a	0x0190353d
+284	32	0x60e0fe00	0x60209600	cmpeqo	[c%d] cmpeqo C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a035c6	0x0190355d
+285	32	0x60e0fe00	0x60209800	cmpnen	[c%d] cmpnen C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], sext(b[20:16]), b[8:6]	0x00a0366a	0x0190357d
+286	32	0x60e0fe00	0x60209a00	cmpnen	[c%d] cmpnen C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a03726	0x01903599
+287	32	0x60e0fe00	0x60209c00	cmpnea	[c%d] cmpnea C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a037e2	0x019035b9
+288	32	0x60e0fe00	0x60209e00	cmpneo	[c%d] cmpneo C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a0389e	0x019035d9
+289	32	0x60e0fe00	0x6020a000	cmpgtun	[c%d] cmpgtun C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a03942	0x019035f9
+290	32	0x60e0fe00	0x6020a200	cmpgtun	[c%d] cmpgtun C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a039fe	0x01903616
+291	32	0x60e0fe00	0x6020a400	cmpgtua	[c%d] cmpgtua C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a03aba	0x01903637
+292	32	0x60e0fe00	0x6020a600	cmpgtuo	[c%d] cmpgtuo C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a03b76	0x01903658
+293	32	0x60e0fe00	0x6020a800	cmpleun	[c%d] cmpleun C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a03c1a	0x01903679
+294	32	0x60e0fe00	0x6020aa00	cmpleun	[c%d] cmpleun C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a03cd6	0x01903696
+295	32	0x60e0fe00	0x6020ac00	cmpleua	[c%d] cmpleua C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a03d92	0x019036b7
+296	32	0x60e0fe00	0x6020ae00	cmpleuo	[c%d] cmpleuo C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a03e4e	0x019036d8
+297	32	0x60e0fe00	0x6020b000	cmpgeun	[c%d] cmpgeun C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a03ef2	0x019036f9
+298	32	0x60e0fe00	0x6020b400	cmpgeua	[c%d] cmpgeua C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a03fae	0x01903716
+299	32	0x60e0fe00	0x6020b600	cmpgeuo	[c%d] cmpgeuo C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a0406a	0x01903737
+300	32	0x60e0fe00	0x6020b800	cmpltun	[c%d] cmpltun C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], b[20:16], b[8:6]	0x00a0410e	0x01903758
+301	32	0x60e0fe00	0x6020ba00	cmpltun	[c%d] cmpltun C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a041ca	0x01903775
+302	32	0x60e0fe00	0x6020bc00	cmpltua	[c%d] cmpltua C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a04286	0x01903796
+303	32	0x60e0fe00	0x6020be00	cmpltuo	[c%d] cmpltuo C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], b[20:16], b[8:6]	0x00a04342	0x019037b7
+304	32	0x60e0fe00	0x6020c000	cmpgtn	[c%d] cmpgtn C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], sext(b[20:16]), b[8:6]	0x00a043e6	0x019037d8
+305	32	0x60e0fe00	0x6020c200	cmpgtn	[c%d] cmpgtn C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a044a2	0x019037f4
+306	32	0x60e0fe00	0x6020c400	cmpgta	[c%d] cmpgta C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a0455e	0x01903814
+307	32	0x60e0fe00	0x6020c600	cmpgto	[c%d] cmpgto C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a0461a	0x01903834
+308	32	0x60e0fe00	0x6020c800	cmplen	[c%d] cmplen C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], sext(b[20:16]), b[8:6]	0x00a046be	0x01903854
+309	32	0x60e0fe00	0x6020ca00	cmplen	[c%d] cmplen C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a0477a	0x01903870
+310	32	0x60e0fe00	0x6020cc00	cmplea	[c%d] cmplea C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a04836	0x01903890
+311	32	0x60e0fe00	0x6020ce00	cmpleo	[c%d] cmpleo C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a048f2	0x019038b0
+312	32	0x60e0fe00	0x6020d000	cmpgen	[c%d] cmpgen C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], sext(b[20:16]), b[8:6]	0x00a04996	0x019038d0
+313	32	0x60e0fe00	0x6020d400	cmpgea	[c%d] cmpgea C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a04a52	0x019038ec
+314	32	0x60e0fe00	0x6020d600	cmpgeo	[c%d] cmpgeo C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a04b0e	0x0190390c
+315	32	0x60e0fe00	0x6020d800	cmpltn	[c%d] cmpltn C%d,R%d,%d,C%d	b[2:0], b[5:3], b[28:24], sext(b[20:16]), b[8:6]	0x00a04bb2	0x0190392c
+316	32	0x60e0fe00	0x6020dc00	cmplta	[c%d] cmplta C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a04c6e	0x01903968
+317	32	0x60e0fe00	0x6020da00	cmpltn	[c%d] cmpltn C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a04d0a	0x01903948
+318	32	0x60e0fe00	0x6020de00	cmplto	[c%d] cmplto C%d:C%d,R%d,%d,C%d	b[2:0], b[5:3], b[5:3]+1, b[28:24], sext(b[20:16]), b[8:6]	0x00a04db4	0x01903988
+319	32	0x60e0f800	0x6020e800	cmpgeun	[c%d] cmpgeun C%d:C%d,R%d,%d,C%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], (b[20:16]:b[10:9]:b[3]), b[8:6]	0x00a04e84	0x019039c8
+320	32	0x60e0f800	0x6020f000	cmpgen	[c%d] cmpgen C%d:C%d,R%d,%d,C%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], sext((b[20:16]:b[10:9]:b[3])), b[8:6]	0x00a04f0a	0x019039e9
+321	32	0x60e0f800	0x6020e000	cmpeqn	[c%d] cmpeqn C%d:C%d,R%d,%d,C%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], sext((b[20:16]:b[10:9]:b[3])), b[8:6]	0x00a04f9e	0x019039a8
+322	32	0x60e08000	0x60400000	add	[c%d] add R%d,R%d,%d	b[2:0], b[20:16], b[28:24], sext(b[14:3])	0x00a05060	0x01903a09
+323	32	0x60e0f800	0x60408000	and	[c%d] and R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[10:3]	0x00a05104	0x01903a1e
+324	32	0x60e0f800	0x60408800	andn	[c%d] andn R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[10:3]	0x00a0518e	0x01903a33
+325	32	0x60e0f800	0x60409000	or	[c%d] or R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[10:3]	0x00a05218	0x01903a49
+326	32	0x60e0f800	0x60409800	xor	[c%d] xor R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[10:3]	0x00a052a2	0x01903a5d
+327	32	0x60e0f800	0x6040a000	rsub	[c%d] rsub R%d,R%d,%d	b[2:0], b[20:16], b[28:24], sext(b[10:3])	0x00a0532c	0x01903a72
+328	32	0x60e0f800	0x6040a800	vsaddb	[c%d] vsaddb R%d,R%d,%d	b[2:0], b[20:16], b[28:24], sext(b[10:3])	0x00a053b6	0x01903a88
+329	32	0x60e0f800	0x6040b800	vsaddh	[c%d] vsaddh R%d,R%d,%d	b[2:0], b[20:16], b[28:24], sext(b[10:3])	0x00a05440	0x01903ab9
+330	32	0x60e0f800	0x6040b000	vsrsubb	[c%d] vsrsubb R%d,R%d,%d	b[2:0], b[20:16], b[28:24], sext(b[10:3])	0x00a054a8	0x01903aa0
+331	32	0x60e0f800	0x6040c000	vsrsubh	[c%d] vsrsubh R%d,R%d,%d	b[2:0], b[20:16], b[28:24], sext(b[10:3])	0x00a05520	0x01903ad1
+332	32	0x60e0fff8	0x6040c808	negvw	[c%d] negvw R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a055ae	0x01903afe
+333	32	0x60e0fff8	0x6040c810	vneghvh	[c%d] vneghvh R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a055fe	0x01903b12
+334	32	0x60e0fff8	0x6040c800	negvh	[c%d] negvh R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0565e	0x01903aea
+335	32	0x60ffff00	0x6040f000	vscmpeqb	[c%d] vscmpeqb R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a056f2	0x01903b28
+336	32	0x60ffff00	0x6040f100	vscmpneb	[c%d] vscmpneb R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a05764	0x01903b3e
+337	32	0x60ffff00	0x6040f200	vscmpgtb	[c%d] vscmpgtb R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a057d6	0x01903b54
+338	32	0x60ffff00	0x6040f300	vscmpleb	[c%d] vscmpleb R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a05848	0x01903b6a
+339	32	0x60ffff00	0x6040f400	vscmpgeb	[c%d] vscmpgeb R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a058ba	0x01903b80
+340	32	0x60ffff00	0x6040f500	vscmpltb	[c%d] vscmpltb R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a0592c	0x01903b96
+341	32	0x60ffff00	0x6040f800	vscmpeqh	[c%d] vscmpeqh R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a0599e	0x01903bac
+342	32	0x60ffff00	0x6040f900	vscmpneh	[c%d] vscmpneh R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a05a10	0x01903bc2
+343	32	0x60ffff00	0x6040fa00	vscmpgth	[c%d] vscmpgth R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a05a82	0x01903bd8
+344	32	0x60ffff00	0x6040fc00	vscmpgeh	[c%d] vscmpgeh R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a05af4	0x01903c04
+345	32	0x60ffff00	0x6040fb00	vscmpleh	[c%d] vscmpleh R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a05b44	0x01903bee
+346	32	0x60ffff00	0x6040fd00	vscmplth	[c%d] vscmplth R%d,%d	b[2:0], b[28:24], sext(b[7:3])	0x00a05ba4	0x01903c1a
+347	32	0x60e0f800	0x60601000	asrp	[c%d] asrp M%d,R%d,MH%d,R%d,%d	b[2:0], b[9], b[20:16], b[10], b[28:24], b[8:3]	0x00a05c76	0x01903c4f
+348	32	0x60e0f800	0x60601800	lsrp	[c%d] lsrp M%d,R%d,MH%d,R%d,%d	b[2:0], b[9], b[20:16], b[10], b[28:24], b[8:3]	0x00a05d10	0x01903c6e
+349	32	0x60e0f800	0x60600000	aslp	[c%d] aslp M%d,R%d,MH%d,R%d,%d	b[2:0], b[9], b[20:16], b[10], b[28:24], b[8:3]	0x00a05db8	0x01903c30
+350	32	0x7fe0f800	0x60602000	aslp	[c%d] aslp M%d,R%d,M%d,%d	b[2:0], b[9], b[20:16], b[10], b[8:3]	0x00a05e86	0x01903c8d
+351	32	0x7fe0f800	0x62602000	asrp	[c%d] asrp M%d,R%d,M%d,%d	b[2:0], b[9], b[20:16], b[10], b[8:3]	0x00a05f2c	0x01903cc3
+352	32	0x7fe0f800	0x61602000	aslpvw	[c%d] aslpvw M%d,R%d,M%d,%d	b[2:0], b[9], b[20:16], b[10], b[8:3]	0x00a05fae	0x01903ca7
+353	32	0x7fe0f800	0x63602000	lsrp	[c%d] lsrp M%d,R%d,M%d,%d	b[2:0], b[9], b[20:16], b[10], b[8:3]	0x00a0603e	0x01903cdd
+354	32	0x7fe0f900	0x64602000	vasl	[c%d] vasl M%d,R%d,M%d,%d	b[2:0], b[9], b[20:16], b[10], b[7:3]	0x00a06106	0x01903cf7
+355	32	0x7fe0f900	0x67602000	vasr	[c%d] vasr M%d,R%d,M%d,%d	b[2:0], b[9], b[20:16], b[10], b[7:3]	0x00a061a8	0x01903d2d
+356	32	0x7fe0f900	0x66602000	vaslvw	[c%d] vaslvw M%d,R%d,M%d,%d	b[2:0], b[9], b[20:16], b[10], b[7:3]	0x00a0622a	0x01903d11
+357	32	0x7fe0f900	0x68602100	vlsr	[c%d] vlsr M%d,R%d,M%d,%d	b[2:0], b[9], b[20:16], b[10], b[7:3]	0x00a062ba	0x01903d47
+358	32	0x60e0ff00	0x60602800	asl	[c%d] asl R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[7:3]	0x00a06360	0x01903d61
+359	32	0x60e0ff00	0x60602a00	asr	[c%d] asr R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[7:3]	0x00a063ea	0x01903d8b
+360	32	0x60e0ff00	0x60602900	rol	[c%d] rol R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[7:3]	0x00a06452	0x01903d76
+361	32	0x60e0ff00	0x60602b00	lsr	[c%d] lsr R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[7:3]	0x00a064ca	0x01903da0
+362	32	0x60e0ff80	0x60602c00	vaslh	[c%d] vaslh R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[6:3]	0x00a0657a	0x01903db5
+363	32	0x60e0ff80	0x60602e00	vasrh	[c%d] vasrh R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[6:3]	0x00a06604	0x01903de3
+364	32	0x60e0ff80	0x60602d00	vrolh	[c%d] vrolh R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[6:3]	0x00a0666c	0x01903dcc
+365	32	0x60e0ff80	0x60602f00	vlsrh	[c%d] vlsrh R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[6:3]	0x00a066e4	0x01903dfa
+366	32	0x60e0ffc0	0x60603000	vaslb	[c%d] vaslb R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[5:3]	0x00a06792	0x01903e11
+367	32	0x60e0ffc0	0x60603200	vasrb	[c%d] vasrb R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[5:3]	0x00a0681c	0x01903e3f
+368	32	0x60e0ffc0	0x60603100	vrolb	[c%d] vrolb R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[5:3]	0x00a06884	0x01903e28
+369	32	0x60e0ffc0	0x60603300	vlsrb	[c%d] vlsrb R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[5:3]	0x00a068fc	0x01903e56
+370	32	0x60e0ff00	0x60603500	aslvh	[c%d] aslvh R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[7:3]	0x00a06990	0x01903e84
+371	32	0x60e0ff00	0x60603400	aslvw	[c%d] aslvw R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[7:3]	0x00a06a08	0x01903e6d
+372	32	0x60e0ff80	0x60603600	vaslvh	[c%d] vaslvh R%d,R%d,%d	b[2:0], b[20:16], b[28:24], b[6:3]	0x00a06aa0	0x01903e9b
+373	32	0x60e0f000	0x60605000	mulu	[c%d] mulu M%d,R%d,R%d,%d	b[2:0], b[11], b[20:16], b[28:24], b[10:3]	0x00a06b58	0x01903ecc
+374	32	0x60e0f000	0x60604000	mul	[c%d] mul M%d,R%d,R%d,%d	b[2:0], b[11], b[20:16], b[28:24], sext(b[10:3])	0x00a06bee	0x01903eb3
+375	32	0x60fff800	0x60716000	jloop	[c%d] jloop C6,C2:C4,TAR,R%d,%d	b[2:0], b[28:24], sext(b[10:3])	0x00a06c78	0x01903eff
+376	32	0x60fff800	0x60606000	jloop	[c%d] jloop C5,LR,R%d,%d	b[2:0], b[28:24], sext(b[10:3])	0x00a06cd8	0x01903ee6
+377	32	0x60f8f800	0x60786000	jloop	[c%d] jloop C6,C%d,TAR,R%d,%d	b[2:0], b[18:16], b[28:24], sext(b[10:3])	0x00a06d7c	0x01903f1f
+378	32	0x60fffff8	0x60606808	jmpl	[c%d] jmpl R%d	b[2:0], b[28:24]	0x00a06de8	0x01903f4b
+379	32	0x60fffff8	0x60606800	jmp	[c%d] jmp R%d	b[2:0], b[28:24]	0x00a06e30	0x01903f3d
+380	32	0x7ffff800	0x60617000	setlr	[c%d] setlr C5,%d	b[2:0], sext(b[10:3])<<1	0x00a06eb4	0x01903f69
+381	32	0x7ffff800	0x60727000	settar	[c%d] settar C6,C2:C4,%d	b[2:0], sext(b[10:3])<<1	0x00a06efc	0x01903f8b
+382	32	0x7ffff800	0x60607000	setlr	[c%d] setlr %d	b[2:0], sext(b[10:3])<<1	0x00a06f34	0x01903f5a
+383	32	0x7ffff800	0x60707000	settar	[c%d] settar %d	b[2:0], sext(b[10:3])<<1	0x00a06f7c	0x01903f7b
+384	32	0x7ff8f800	0x60787000	settar	[c%d] settar C6,C%d,%d	b[2:0], b[18:16], sext(b[10:3])<<1	0x00a07006	0x01903fa4
+385	32	0x60e0ff00	0x60608000	mskgen	[c%d] mskgen R%d,%d,%d	b[2:0], b[20:16], b[28:24], b[7:3]	0x00a07098	0x01903fbb
+386	32	0x7fe0ff00	0x60609000	mskgen	[c%d] mskgen R%d,R%d	b[2:0], b[7:3], b[20:16]	0x00a0711e	0x01903fd2
+387	32	0x60e0ff00	0x60609500	extr	[c%d] extr R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a071bc	0x01903ffd
+388	32	0x60e0ff00	0x60609600	extru	[c%d] extru R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a07224	0x01904014
+389	32	0x60e0ff00	0x60609400	msk	[c%d] msk R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0729c	0x01903fe7
+390	32	0x60e0e000	0x6060c000	extru	[c%d] extru R%d,R%d,%d,%d	b[2:0], b[20:16], b[28:24], b[12:8], b[7:3]	0x00a07362	0x01904044
+391	32	0x60e0e000	0x6060e000	extr	[c%d] extr R%d,R%d,%d,%d	b[2:0], b[20:16], b[28:24], b[12:8], b[7:3]	0x00a073e4	0x0190405e
+392	32	0x60e0e000	0x6060a000	msk	[c%d] msk R%d,R%d,%d,%d	b[2:0], b[20:16], b[28:24], b[12:8], b[7:3]	0x00a07474	0x0190402c
+393	32	0x60e0fc00	0x60800000	mac	[c%d] mac M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07556	0x01904077
+394	32	0x60e0fc00	0x60800400	hmac	[c%d] hmac M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07612	0x01904095
+395	32	0x60e0fc00	0x60800800	lmac	[c%d] lmac M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a076ce	0x019040b4
+396	32	0x60e0fc00	0x60800c00	fmachw	[c%d] fmachw M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0778a	0x019040d3
+397	32	0x60e0fc00	0x60801000	fmachh	[c%d] fmachh M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07846	0x019040f4
+398	32	0x60e0fc00	0x60801400	fmachhr	[c%d] fmachhr M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07902	0x01904115
+399	32	0x60e0fc00	0x60801800	fmacww	[c%d] fmacww M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a079be	0x01904137
+400	32	0x60e0fc00	0x60801c00	fmachww	[c%d] fmachww M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07a7a	0x01904158
+401	32	0x60e0fc00	0x60802000	vmac	[c%d] vmac M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07b36	0x0190417a
+402	32	0x60e0fc00	0x60802400	vxmac	[c%d] vxmac M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07bf2	0x01904199
+403	32	0x60e0fc00	0x60802800	vhmac	[c%d] vhmac M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07cae	0x019041b9
+404	32	0x60e0fc00	0x60802c00	vlmac	[c%d] vlmac M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07d6a	0x019041d9
+405	32	0x60e0fc00	0x60803000	vfmach	[c%d] vfmach M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07e26	0x019041f9
+406	32	0x60e0fc00	0x60803400	vxfmach	[c%d] vxfmach M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07ee2	0x0190421a
+407	32	0x60e0fc00	0x60803800	vhfmach	[c%d] vhfmach M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a07f9e	0x0190423c
+408	32	0x60e0fc00	0x60803c00	vlfmach	[c%d] vlfmach M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0805a	0x0190425e
+409	32	0x60e0fc00	0x60804000	msu	[c%d] msu M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a08116	0x01904280
+410	32	0x60e0fc00	0x60804400	hmsu	[c%d] hmsu M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a081d2	0x0190429e
+411	32	0x60e0fc00	0x60804800	lmsu	[c%d] lmsu M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0828e	0x019042bd
+412	32	0x60e0fc00	0x60804c00	fmsuhw	[c%d] fmsuhw M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0834a	0x019042dc
+413	32	0x60e0fc00	0x60805000	fmsuhh	[c%d] fmsuhh M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a08406	0x019042fd
+414	32	0x60e0fc00	0x60805400	fmsuhhr	[c%d] fmsuhhr M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a084c2	0x0190431e
+415	32	0x60e0fc00	0x60805800	fmsuww	[c%d] fmsuww M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0857e	0x01904340
+416	32	0x60e0fc00	0x60805c00	fmsuhww	[c%d] fmsuhww M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0863a	0x01904361
+417	32	0x60e0fc00	0x60806000	vmsu	[c%d] vmsu M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a086f6	0x01904383
+418	32	0x60e0fc00	0x60806400	vxmsu	[c%d] vxmsu M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a087b2	0x019043a2
+419	32	0x60e0fc00	0x60806800	vhmsu	[c%d] vhmsu M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0886e	0x019043c2
+420	32	0x60e0fc00	0x60806c00	vlmsu	[c%d] vlmsu M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0892a	0x019043e2
+421	32	0x60e0fc00	0x60807000	vfmsuh	[c%d] vfmsuh M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a089e6	0x01904402
+422	32	0x60e0fc00	0x60807800	vhfmsuh	[c%d] vhfmsuh M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a08aa2	0x01904445
+423	32	0x60e0fc00	0x60807400	vxfmsuh	[c%d] vxfmsuh M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a08b3e	0x01904423
+424	32	0x60e0fc00	0x60807c00	vlfmsuh	[c%d] vlfmsuh M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a08be8	0x01904467
+425	32	0x60e0fc00	0x60808000	mac	[c%d] mac M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a08ca4	0x01904489
+426	32	0x60e0fc00	0x60808400	hmac	[c%d] hmac M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a08d48	0x019044a6
+427	32	0x60e0fc00	0x60808800	lmac	[c%d] lmac M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a08dec	0x019044c4
+428	32	0x60e0fc00	0x60808c00	fmachw	[c%d] fmachw M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a08e90	0x019044e2
+429	32	0x60e0fc00	0x60809000	fmachh	[c%d] fmachh M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a08f34	0x01904502
+430	32	0x60e0fc00	0x60809400	fmachhr	[c%d] fmachhr M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a08fd8	0x01904522
+431	32	0x60e0fc00	0x60809800	fmacww	[c%d] fmacww M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a0907c	0x01904543
+432	32	0x60e0fc00	0x60809c00	fmachww	[c%d] fmachww M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09120	0x01904563
+433	32	0x60e0fc00	0x6080a000	vmac	[c%d] vmac M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a091c4	0x01904584
+434	32	0x60e0fc00	0x6080a400	vxmac	[c%d] vxmac M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09268	0x019045a2
+435	32	0x60e0fc00	0x6080a800	vhmac	[c%d] vhmac M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a0930c	0x019045c1
+436	32	0x60e0fc00	0x6080ac00	vlmac	[c%d] vlmac M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a093b0	0x019045e0
+437	32	0x60e0fc00	0x6080b000	vfmach	[c%d] vfmach M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09454	0x019045ff
+438	32	0x60e0fc00	0x6080b400	vxfmach	[c%d] vxfmach M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a094f8	0x0190461f
+439	32	0x60e0fc00	0x6080b800	vhfmach	[c%d] vhfmach M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a0959c	0x01904640
+440	32	0x60e0fc00	0x6080bc00	vlfmach	[c%d] vlfmach M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09640	0x01904661
+441	32	0x60e0fc00	0x6080c000	msu	[c%d] msu M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a096e4	0x01904682
+442	32	0x60e0fc00	0x6080c400	hmsu	[c%d] hmsu M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09788	0x0190469f
+443	32	0x60e0fc00	0x6080c800	lmsu	[c%d] lmsu M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a0982c	0x019046bd
+444	32	0x60e0fc00	0x6080cc00	fmsuhw	[c%d] fmsuhw M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a098d0	0x019046db
+445	32	0x60e0fc00	0x6080d000	fmsuhh	[c%d] fmsuhh M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09974	0x019046fb
+446	32	0x60e0fc00	0x6080d800	fmsuww	[c%d] fmsuww M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09a18	0x0190471b
+447	32	0x60e0fc00	0x6080dc00	fmsuhww	[c%d] fmsuhww M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09abc	0x0190473b
+448	32	0x60e0fc00	0x6080e000	vmsu	[c%d] vmsu M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09b60	0x0190475c
+449	32	0x60e0fc00	0x6080e400	vxmsu	[c%d] vxmsu M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09c04	0x0190477a
+450	32	0x60e0fc00	0x6080e800	vhmsu	[c%d] vhmsu M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09ca8	0x01904799
+451	32	0x60e0fc00	0x6080ec00	vlmsu	[c%d] vlmsu M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09d4c	0x019047b8
+452	32	0x60e0fc00	0x6080f000	vfmsuh	[c%d] vfmsuh M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09df0	0x019047d7
+453	32	0x60e0fc00	0x6080f800	vhfmsuh	[c%d] vhfmsuh M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09e94	0x01904818
+454	32	0x60e0fc00	0x6080f400	vxfmsuh	[c%d] vxfmsuh M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09f18	0x019047f7
+455	32	0x60e0fc00	0x6080fc00	vlfmsuh	[c%d] vlfmsuh M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a09faa	0x01904839
+456	32	0x60e0fe00	0x60a00000	mul	[c%d] mul M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a06a	0x0190485a
+457	32	0x60e0fe00	0x60a00400	lmul	[c%d] lmul M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a10c	0x0190488f
+458	32	0x60e0fe00	0x60a00200	hmul	[c%d] hmul M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a18e	0x01904874
+459	32	0x60e0fe00	0x60a00600	fmulhw	[c%d] fmulhw M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a220	0x019048aa
+460	32	0x60e0fe00	0x60a00800	fmulhh	[c%d] fmulhh M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a2c2	0x019048c7
+461	32	0x60e0fe00	0x60a00a00	fmulhhr	[c%d] fmulhhr M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a364	0x019048e4
+462	32	0x60e0fe00	0x60a00c00	fmulww	[c%d] fmulww M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a406	0x01904902
+463	32	0x60e0fe00	0x60a00e00	fmulhww	[c%d] fmulhww M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a4a8	0x0190491f
+464	32	0x60e0fe00	0x60a01000	vfmulh	[c%d] vfmulh M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a54a	0x0190493d
+465	32	0x60e0fe00	0x60a01200	vfmulhr	[c%d] vfmulhr M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a5ec	0x0190495a
+466	32	0x60e0fe00	0x60a01400	vxfmulh	[c%d] vxfmulh M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a68e	0x01904978
+467	32	0x60e0fe00	0x60a01600	vxfmulhr	[c%d] vxfmulhr M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a730	0x01904996
+468	32	0x60e0fe00	0x60a01800	vhfmulh	[c%d] vhfmulh M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a7d2	0x019049b5
+469	32	0x60e0fe00	0x60a01a00	vhfmulhr	[c%d] vhfmulhr M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a874	0x019049d3
+470	32	0x60e0fe00	0x60a01c00	vlfmulh	[c%d] vlfmulh M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a916	0x019049f2
+471	32	0x60e0fe00	0x60a01e00	vlfmulhr	[c%d] vlfmulhr M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0a9b8	0x01904a10
+472	32	0x60e0fe00	0x60a02000	vfmulw	[c%d] vfmulw M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0aa5a	0x01904a2f
+473	32	0x60e0fe00	0x60a02200	vxfmulw	[c%d] vxfmulw M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0aafc	0x01904a4c
+474	32	0x60e0fe00	0x60a02400	vhfmulw	[c%d] vhfmulw M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0ab9e	0x01904a6a
+475	32	0x60e0fe00	0x60a02600	vlfmulw	[c%d] vlfmulw M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0ac40	0x01904a88
+476	32	0x60e0fe00	0x60a02800	vmul	[c%d] vmul M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0ace2	0x01904aa6
+477	32	0x60e0fe00	0x60a02c00	vhmul	[c%d] vhmul M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0ad84	0x01904add
+478	32	0x60e0fe00	0x60a02a00	vxmul	[c%d] vxmul M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0ae06	0x01904ac1
+479	32	0x60e0fe00	0x60a02e00	vlmul	[c%d] vlmul M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0ae96	0x01904af9
+480	32	0x60e0fc08	0x60a03800	vpfmachww	[c%d] vpfmachww M%d,R%d:R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:4]<<1, b[7:4]<<1+1, b[28:24], b[20:16], b[9]	0x00a0af82	0x01904b15
+481	32	0x60e0fe08	0x60a03c00	vpfmulhww	[c%d] vpfmulhww M%d,R%d:R%d,R%d,R%d	b[2:0], b[8], b[7:4]<<1, b[7:4]<<1+1, b[28:24], b[20:16]	0x00a0b056	0x01904b3d
+482	32	0x60e0fe00	0x60a03e00	mulu	[c%d] mulu M%d,R%d,R%d,R%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16]	0x00a0b118	0x01904b61
+483	32	0x60e0fc00	0x60a04000	vfmachr	[c%d] vfmachr M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0b1ec	0x01904b7c
+484	32	0x60e0fc00	0x60a04400	vxfmachr	[c%d] vxfmachr M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0b2a6	0x01904b9e
+485	32	0x60e0fc00	0x60a04800	vhfmachr	[c%d] vhfmachr M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0b360	0x01904bc1
+486	32	0x60e0fc00	0x60a04c00	vlfmachr	[c%d] vlfmachr M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0b418	0x01904be4
+487	32	0x60e0ff00	0x60a08000	asl	[c%d] asl R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0b4c2	0x01904d9c
+488	32	0x60e0ff00	0x60a08100	rol	[c%d] rol R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0b54c	0x01904db2
+489	32	0x60e0ff00	0x60a08200	asr	[c%d] asr R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0b5d6	0x01904dc8
+490	32	0x60e0ff00	0x60a08300	lsr	[c%d] lsr R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0b660	0x01904dde
+491	32	0x60e0fc00	0x60a05000	vfmachr	[c%d] vfmachr M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a0b702	0x01904c07
+492	32	0x60e0ff00	0x60a08500	vrolh	[c%d] vrolh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0b78c	0x01904e0c
+493	32	0x60e0fc00	0x60a05400	vxfmachr	[c%d] vxfmachr M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a0b82e	0x01904c28
+494	32	0x60e0ff00	0x60a08400	vaslh	[c%d] vaslh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0b898	0x01904df4
+495	32	0x60e0ff00	0x60a08600	vasrh	[c%d] vasrh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0b912	0x01904e24
+496	32	0x60e0ff00	0x60a08700	vlsrh	[c%d] vlsrh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0b99c	0x01904e3c
+497	32	0x60e0ff00	0x60a08800	vaslb	[c%d] vaslb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0ba26	0x01904e54
+498	32	0x60e0ff00	0x60a08900	vrolb	[c%d] vrolb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0bab0	0x01904e6c
+499	32	0x60e0ff00	0x60a08a00	vasrb	[c%d] vasrb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0bb3a	0x01904e84
+500	32	0x60e0ff00	0x60a08b00	vlsrb	[c%d] vlsrb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0bbc4	0x01904e9c
+501	32	0x60e0fc00	0x60a05800	vhfmachr	[c%d] vhfmachr M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a0bc66	0x01904c4a
+502	32	0x60e0ff00	0x60a09000	aslvw	[c%d] aslvw R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0bcf0	0x01904eb4
+503	32	0x60e0fc00	0x60a05c00	vlfmachr	[c%d] vlfmachr M0,R%d,R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16], b[9:8]	0x00a0bd92	0x01904c6c
+504	32	0x60e0ff00	0x60a09100	aslvh	[c%d] aslvh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0be32	0x01904ecc
+505	32	0x60e0fc00	0x60a06000	vfmacw	[c%d] vfmacw M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0beec	0x01904c8e
+506	32	0x60e0ff00	0x60a09200	vaslvh	[c%d] vaslvh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0bf76	0x01904ee4
+507	32	0x60e0fc00	0x60a06400	vxfmacw	[c%d] vxfmacw M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0c030	0x01904caf
+508	32	0x60e0ff00	0x60a09500	asrvh	[c%d] asrvh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0c0ba	0x01904f15
+509	32	0x60e0fc00	0x60a06800	vhfmacw	[c%d] vhfmacw M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0c174	0x01904cd1
+510	32	0x60e0ff00	0x60a09400	asrvw	[c%d] asrvw R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0c1de	0x01904efd
+511	32	0x60e0ff00	0x60a09600	vasrvh	[c%d] vasrvh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0c256	0x01904f2d
+512	32	0x60e0fcf8	0x60a0a000	aslp	[c%d] aslp M%d,R%d,M%d,R%d	b[2:0], b[8], b[28:24], b[9], b[20:16]	0x00a0c31c	0x01904f46
+513	32	0x60e0fcf8	0x60a0a018	lsrp	[c%d] lsrp M%d,R%d,M%d,R%d	b[2:0], b[8], b[28:24], b[9], b[20:16]	0x00a0c3ee	0x01904f7c
+514	32	0x60e0fcf8	0x60a0a050	vasr	[c%d] vasr M%d,R%d,M%d,R%d	b[2:0], b[8], b[28:24], b[9], b[20:16]	0x00a0c480	0x01904fec
+515	32	0x60e0fcf8	0x60a0a040	vasl	[c%d] vasl M%d,R%d,M%d,R%d	b[2:0], b[8], b[28:24], b[9], b[20:16]	0x00a0c512	0x01904fd1
+516	32	0x60e0fcf8	0x60a0a030	asrpvw	[c%d] asrpvw M%d,R%d,M%d,R%d	b[2:0], b[8], b[28:24], b[9], b[20:16]	0x00a0c5a4	0x01904fb4
+517	32	0x60e0fcf8	0x60a0a010	asrp	[c%d] asrp M%d,R%d,M%d,R%d	b[2:0], b[8], b[28:24], b[9], b[20:16]	0x00a0c626	0x01904f61
+518	32	0x60e0fcf8	0x60a0a020	aslpvw	[c%d] aslpvw M%d,R%d,M%d,R%d	b[2:0], b[8], b[28:24], b[9], b[20:16]	0x00a0c6b8	0x01904f97
+519	32	0x60e0fcf8	0x60a0a060	vaslvw	[c%d] vaslvw M%d,R%d,M%d,R%d	b[2:0], b[8], b[28:24], b[9], b[20:16]	0x00a0c75a	0x01905022
+520	32	0x60e0fcf8	0x60a0a070	vasrvw	[c%d] vasrvw M%d,R%d,M%d,R%d	b[2:0], b[8], b[28:24], b[9], b[20:16]	0x00a0c7dc	0x0190503f
+521	32	0x60e0fcf8	0x60a0a058	vlsr	[c%d] vlsr M%d,R%d,M%d,R%d	b[2:0], b[8], b[28:24], b[9], b[20:16]	0x00a0c86c	0x01905007
+522	32	0x60e0fc00	0x60a0b800	asrp	[c%d] asrp M%d,R%d,MH%d,R%d,R%d	b[2:0], b[8], b[7:3], b[9], b[28:24], b[20:16]	0x00a0c944	0x0190507c
+523	32	0x60e0fc00	0x60a0bc00	lsrp	[c%d] lsrp M%d,R%d,MH%d,R%d,R%d	b[2:0], b[8], b[7:3], b[9], b[28:24], b[20:16]	0x00a0c9de	0x0190509c
+524	32	0x60e0fc00	0x60a0b000	aslp	[c%d] aslp M%d,R%d,MH%d,R%d,R%d	b[2:0], b[8], b[7:3], b[9], b[28:24], b[20:16]	0x00a0ca86	0x0190505c
+525	32	0x60e0ff00	0x60a0c000	vintllh	[c%d] vintllh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0cb32	0x019050bc
+526	32	0x60e0ff00	0x60a0c100	vintlhh	[c%d] vintlhh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0cbbc	0x019050d6
+527	32	0x60e0ff00	0x60a0c200	vintllb	[c%d] vintllb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0cc46	0x019050f0
+528	32	0x60e0ff00	0x60a0c300	vintlhb	[c%d] vintlhb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0ccd0	0x0190510a
+529	32	0x60e0ff00	0x60a0c400	mskbrvb	[c%d] mskbrvb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0cd5a	0x01905124
+530	32	0x60e0ff00	0x60a0c500	mskbrvh	[c%d] mskbrvh R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0cde4	0x0190513e
+531	32	0x60e0ff00	0x60a0c700	vabssumb	[c%d] vabssumb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0ce6e	0x01905158
+532	32	0x60e0ff00	0x60a0c800	valn	[c%d] valn R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0cef8	0x01905173
+533	32	0x60e0ff00	0x60a0c900	valn1	[c%d] valn1 R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0cf82	0x0190518a
+534	32	0x60e0ff00	0x60a0ca00	valn2	[c%d] valn2 R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0d00c	0x019051a2
+535	32	0x60e0fc00	0x60a06c00	vlfmacw	[c%d] vlfmacw M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0d0c6	0x01904cf3
+536	32	0x60e0ff00	0x60a0cb00	valn3	[c%d] valn3 R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0d150	0x019051ba
+537	32	0x60e0fc00	0x60a07000	vfmsuw	[c%d] vfmsuw M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0d20a	0x01904d15
+538	32	0x60e0ff00	0x60a0cc00	valnvc1	[c%d] valnvc1 R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0d294	0x019051d2
+539	32	0x60e0fc00	0x60a07800	vhfmsuw	[c%d] vhfmsuw M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0d34e	0x01904d58
+540	32	0x60e0ff00	0x60a0ce00	valnvc3	[c%d] valnvc3 R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0d3d8	0x01905206
+541	32	0x60e0fc00	0x60a07400	vxfmsuw	[c%d] vxfmsuw M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0d472	0x01904d36
+542	32	0x60e0fc00	0x60a07c00	vlfmsuw	[c%d] vlfmsuw M%d,R%d,R%d,R%d,M%d	b[2:0], b[8], b[7:3], b[28:24], b[20:16], b[9]	0x00a0d51c	0x01904d7a
+543	32	0x60e0ff00	0x60a0cd00	valnvc2	[c%d] valnvc2 R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0d586	0x019051ec
+544	32	0x60e0ff00	0x60a0cf00	valnvc4	[c%d] valnvc4 R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0d5fe	0x01905220
+545	32	0x60e0fff8	0x60a0d000	byterev	[c%d] byterev R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0d68e	0x0190523a
+546	32	0x60e0fff8	0x60a0d018	vstovh	[c%d] vstovh R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0d700	0x01905265
+547	32	0x60e0fff8	0x60a0d010	vstovb	[c%d] vstovb R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0d750	0x01905250
+548	32	0x60e0fff8	0x60a0d020	rndvh	[c%d] rndvh R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0d7b0	0x0190527a
+549	32	0x60e1fff8	0x60a0d040	vlunpkh	[c%d] vlunpkh R%d:R%d,R%d	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24]	0x00a0d858	0x0190528e
+550	32	0x60e1fff8	0x60a1d040	vlunpkhu	[c%d] vlunpkhu R%d:R%d,R%d	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24]	0x00a0d8ba	0x019052a8
+551	32	0x60e1fff8	0x60a0d050	vhunpkh	[c%d] vhunpkh R%d:R%d,R%d	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24]	0x00a0d92c	0x019052f8
+552	32	0x60e1fff8	0x60a1d048	vlunpkbu	[c%d] vlunpkbu R%d:R%d,R%d	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24]	0x00a0d98e	0x019052dd
+553	32	0x60e1fff8	0x60a0d048	vlunpkb	[c%d] vlunpkb R%d:R%d,R%d	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24]	0x00a0d9de	0x019052c3
+554	32	0x60e1fff8	0x60a0d058	vhunpkb	[c%d] vhunpkb R%d:R%d,R%d	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24]	0x00a0da3e	0x01905312
+555	32	0x60e0fff8	0x60a0d060	bseq0	[c%d] bseq0 R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0daea	0x0190532c
+556	32	0x60e0fff8	0x60a0d070	bseq	[c%d] bseq R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0db5c	0x01905354
+557	32	0x60e0fff8	0x60a0d068	bseq1	[c%d] bseq1 R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0dbac	0x01905340
+558	32	0x60e0fff8	0x60a0d078	bcnt1	[c%d] bcnt1 R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0dc0c	0x01905367
+559	32	0x60fffff8	0x60a0d100	sbxencr	[c%d] sbxencr R%d	b[2:0], b[28:24]	0x00a0dc80	0x0190537b
+560	32	0x60fffff8	0x60a2d100	mxcencr	[c%d] mxcencr R%d	b[2:0], b[28:24]	0x00a0dcd8	0x0190539f
+561	32	0x60fffff8	0x60a1d100	sbxdecr	[c%d] sbxdecr R%d	b[2:0], b[28:24]	0x00a0dd10	0x0190538d
+562	32	0x60fffff8	0x60a3d100	mxcdecr	[c%d] mxcdecr R%d	b[2:0], b[28:24]	0x00a0dd58	0x019053b1
+563	32	0x60e0fef8	0x60a0d090	vexth	[c%d] vexth M%d,R%d,R%d	b[2:0], b[8], b[20:16], b[28:24]	0x00a0ddf2	0x019053da
+564	32	0x60e0fef8	0x60a0d080	extw	[c%d] extw M%d,R%d,R%d	b[2:0], b[8], b[20:16], b[28:24]	0x00a0de6a	0x019053c3
+565	32	0x7fe0fdf8	0x60a0d408	vunpk2	[c%d] vunpk2 R%d,M%d	b[2:0], b[20:16], b[9]	0x00a0df00	0x01905407
+566	32	0x7fe0fdf8	0x60a0d420	vrndvh	[c%d] vrndvh R%d,M%d	b[2:0], b[20:16], b[9]	0x00a0df50	0x0190541c
+567	32	0x7fe0fdf8	0x60a0d400	vunpk1	[c%d] vunpk1 R%d,M%d	b[2:0], b[20:16], b[9]	0x00a0dfb0	0x019053f2
+568	32	0x60e0ff00	0x60a0d800	vhpkb	[c%d] vhpkb R%d,R%d,R%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0e046	0x01905431
+569	32	0x60e0fc00	0x60a0e400	divu	[c%d] divu MH%d,R%d,MH%d,R%d,R%d	b[2:0], b[8], b[7:3], b[9], b[28:24], b[20:16]	0x00a0e108	0x01905469
+570	32	0x60e0fc00	0x60a0e000	div	[c%d] div MH%d,R%d,MH%d,R%d,R%d	b[2:0], b[8], b[7:3], b[9], b[28:24], b[20:16]	0x00a0e1b0	0x01905449
+571	32	0x60e0ff00	0x60a0f000	vlpkh	[c%d] vlpkh R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x00a0e25c	0x0190548a
+572	32	0x60e0ff00	0x60a0f200	vlpkb	[c%d] vlpkb R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x00a0e2e6	0x019054bb
+573	32	0x60e0ff00	0x60a0f100	vlpkhu	[c%d] vlpkhu R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x00a0e34e	0x019054a2
+574	32	0x60e0ff00	0x60a0f300	vlpkbu	[c%d] vlpkbu R%d,R%d,R%d	b[2:0], b[7:3], b[20:16], b[28:24]	0x00a0e3c6	0x019054d3
+575	32	0x60e0fff8	0x60a0f400	satb	[c%d] satb R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0e484	0x019054ec
+576	32	0x60e0fff8	0x60a0f600	vsgnh	[c%d] vsgnh R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0e4e6	0x019055a3
+577	32	0x60e0fff8	0x60a0f470	vsath12	[c%d] vsath12 R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0e548	0x0190558d
+578	32	0x60e0fff8	0x60a0f460	vsath9	[c%d] vsath9 R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0e5aa	0x01905578
+579	32	0x60e0fff8	0x60a0f408	satbu	[c%d] satbu R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0e61c	0x019054ff
+580	32	0x60e0fff8	0x60a0f410	sath	[c%d] sath R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0e68e	0x01905513
+581	32	0x60e0fff8	0x60a0f420	sat9	[c%d] sat9 R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0e700	0x01905526
+582	32	0x60e0fff8	0x60a0f440	vsath8	[c%d] vsath8 R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0e772	0x0190554d
+583	32	0x60e0fff8	0x60a0f430	sat12	[c%d] sat12 R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0e7c2	0x01905539
+584	32	0x60e0fff8	0x60a0f448	vsath8u	[c%d] vsath8u R%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a0e822	0x01905562
+585	32	0x7fe0fcf8	0x60a0f488	vsath	[c%d] vsath M%d,R%d,M%d	b[2:0], b[8], b[20:16], b[9]	0x00a0e8be	0x019055ce
+586	32	0x7fe0fcf8	0x60a0f480	satw	[c%d] satw M%d,R%d,M%d	b[2:0], b[8], b[20:16], b[9]	0x00a0e936	0x019055b7
+587	32	0x60e0f000	0x60c08000	fmadd	[c%d] fmadd FS%d,FS%d,FS%d,FS%d	b[2:0], b[7:3], b[28:24], b[20:16], b[11:8]	0x00a0e9f4	0x019055e6
+588	32	0x60e0f000	0x60c0a000	fnmadd	[c%d] fnmadd FS%d,FS%d,FS%d,FS%d	b[2:0], b[7:3], b[28:24], b[20:16], b[11:8]	0x00a0ea96	0x01905626
+589	32	0x60e0f000	0x60c09000	fmsub	[c%d] fmsub FS%d,FS%d,FS%d,FS%d	b[2:0], b[7:3], b[28:24], b[20:16], b[11:8]	0x00a0eb18	0x01905606
+590	32	0x60e0f000	0x60c0b000	fnmsub	[c%d] fnmsub FS%d,FS%d,FS%d,FS%d	b[2:0], b[7:3], b[28:24], b[20:16], b[11:8]	0x00a0eba8	0x01905647
+591	32	0x60e0ff00	0x60c0c000	fadd	[c%d] fadd FS%d,FS%d,FS%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0ec4e	0x01905668
+592	32	0x60e0ff00	0x60c0c100	fadd	[c%d] fadd FD%d,FD%d,FD%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0ecd8	0x01905682
+593	32	0x60e0ff00	0x60c0c200	fsub	[c%d] fsub FS%d,FS%d,FS%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0ed62	0x0190569c
+594	32	0x60e0ff00	0x60c0c300	fsub	[c%d] fsub FD%d,FD%d,FD%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0edec	0x019056b6
+595	32	0x60e0ff00	0x60c0c400	fmul	[c%d] fmul FS%d,FS%d,FS%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0ee76	0x019056d0
+596	32	0x60e0ff00	0x60c0c500	fmul	[c%d] fmul FD%d,FD%d,FD%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0ef00	0x019056ea
+597	32	0x60e0ff00	0x60c0c600	fdiv	[c%d] fdiv FS%d,FS%d,FS%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0ef8a	0x01905704
+598	32	0x60e0ff00	0x60c0c800	fcmp	[c%d] fcmp FS%d,FS%d,FS%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0f014	0x01905738
+599	32	0x60e0ff00	0x60c0c700	fdiv	[c%d] fdiv FD%d,FD%d,FD%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0f07c	0x0190571e
+600	32	0x60e0ff00	0x60c0c900	fcmp	[c%d] fcmp FS%d,FD%d,FD%d	b[2:0], b[7:3], b[28:24], b[20:16]	0x00a0f0f4	0x01905752
+601	32	0x60e0ffc8	0x60c0cc00	fcmpeq	[c%d] fcmpeq C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f1a4	0x0190576c
+602	32	0x60e0ffc8	0x60c0cc40	fcmpne	[c%d] fcmpne C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f230	0x0190578b
+603	32	0x60e0ffc8	0x60c0cc80	fcmpgt	[c%d] fcmpgt C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f2bc	0x019057aa
+604	32	0x60e0ffc8	0x60c0ccc0	fcmple	[c%d] fcmple C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f348	0x019057c9
+605	32	0x60e0ffc8	0x60c0cd00	fcmplt	[c%d] fcmplt C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f3d4	0x019057e8
+606	32	0x60e0ffc8	0x60c0cd40	fcmpge	[c%d] fcmpge C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f460	0x01905807
+607	32	0x60e0ffc8	0x60c0ce00	fcmpaeq	[c%d] fcmpaeq C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f4ec	0x01905826
+608	32	0x60e0ffc8	0x60c0ce40	fcmpane	[c%d] fcmpane C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f578	0x01905846
+609	32	0x60e0ffc8	0x60c0cec0	fcmpale	[c%d] fcmpale C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f604	0x01905886
+610	32	0x60e0ffc8	0x60c0ce80	fcmpagt	[c%d] fcmpagt C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f670	0x01905866
+611	32	0x60e0ffc8	0x60c0cf00	fcmpalt	[c%d] fcmpalt C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f6ec	0x019058a6
+612	32	0x60e0ffc8	0x60c0cc08	fcmpeq	[c%d] fcmpeq C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f778	0x019058e6
+613	32	0x60e0ffc8	0x60c0cc48	fcmpne	[c%d] fcmpne C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f804	0x01905905
+614	32	0x60e0ffc8	0x60c0cc88	fcmpgt	[c%d] fcmpgt C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f890	0x01905924
+615	32	0x60e0ffc8	0x60c0ccc8	fcmple	[c%d] fcmple C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f91c	0x01905943
+616	32	0x60e0ffc8	0x60c0cd08	fcmplt	[c%d] fcmplt C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0f9a8	0x01905962
+617	32	0x60e0ffc8	0x60c0cd48	fcmpge	[c%d] fcmpge C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0fa34	0x01905981
+618	32	0x60e0ffc8	0x60c0ce08	fcmpaeq	[c%d] fcmpaeq C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0fac0	0x019059a0
+619	32	0x60e0ffc8	0x60c0ce48	fcmpane	[c%d] fcmpane C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0fb4c	0x019059c0
+620	32	0x60e0ffc8	0x60c0ce88	fcmpagt	[c%d] fcmpagt C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0fbd8	0x019059e0
+621	32	0x60e0ffc8	0x60c0cec8	fcmpale	[c%d] fcmpale C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0fc64	0x01905a00
+622	32	0x60e0ffc8	0x60c0cf48	fcmpage	[c%d] fcmpage C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0fcf0	0x01905a40
+623	32	0x60e0ffc8	0x60c0cf08	fcmpalt	[c%d] fcmpalt C%d:C%d,FD%d,FD%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0fd5a	0x01905a20
+624	32	0x60e0ffc8	0x60c0cf40	fcmpage	[c%d] fcmpage C%d:C%d,FS%d,FS%d	b[2:0], b[5:4]<<1, b[5:4]<<1+1, b[28:24], b[20:16]	0x00a0fdd4	0x019058c6
+625	32	0x60e0fff8	0x60c0d000	ftoi	[c%d] ftoi FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a0fe82	0x01905a60
+626	32	0x60e0fff8	0x60c0d008	itof	[c%d] itof FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a0fef4	0x01905a75
+627	32	0x60e0fff8	0x60c0d010	dtof	[c%d] dtof FS%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a0ff66	0x01905a8a
+628	32	0x60e0fff8	0x60c0d020	frsqrt	[c%d] frsqrt FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a0ffd8	0x01905ab4
+629	32	0x60e0fff8	0x60c0d018	ftod	[c%d] ftod FD%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a1002a	0x01905a9f
+630	32	0x60e0fff8	0x60c0d028	frsqrt	[c%d] frsqrt FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a1008c	0x01905acb
+631	32	0x60e0fff8	0x60c0d030	fsqrt	[c%d] fsqrt FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a100fe	0x01905ae2
+632	32	0x60e0fff8	0x60c0d038	fsqrt	[c%d] fsqrt FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10170	0x01905af8
+633	32	0x60e0fff8	0x60c0d040	dtol	[c%d] dtol FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a101e2	0x01905b0e
+634	32	0x60e0fff8	0x60c0d048	ltod	[c%d] ltod FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10254	0x01905b23
+635	32	0x60e0fff8	0x60c0d050	fetof	[c%d] fetof FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a102c6	0x01905b38
+636	32	0x60e0fff8	0x60c0d058	detod	[c%d] detod FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10338	0x01905b4e
+637	32	0x60e0fff8	0x60c0d070	htofp	[c%d] htofp FD%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a103aa	0x01905b64
+638	32	0x60e0fff8	0x60c0d078	ftohp	[c%d] ftohp FS%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a1041c	0x01905b7a
+639	32	0x60e0fff8	0x60c0d080	ntofp	[c%d] ntofp FD%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a1048e	0x01905b90
+640	32	0x60e0fff8	0x60c0d088	itod	[c%d] itod FD%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a10500	0x01905ba6
+641	32	0x60e0fff8	0x60c0d090	q31tof	[c%d] q31tof FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a10572	0x01905bbb
+642	32	0x60e0fff8	0x60c0d098	q31tod	[c%d] q31tod FD%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a105e4	0x01905bd2
+643	32	0x60e0fff8	0x60c0d0a0	ltof	[c%d] ltof FS%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10656	0x01905be9
+644	32	0x60e0fff8	0x60c0d0a8	q63tof	[c%d] q63tof FS%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a106c8	0x01905bfe
+645	32	0x60e0fff8	0x60c0d0b0	q63tod	[c%d] q63tod FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a1073a	0x01905c15
+646	32	0x60e0fff8	0x60c0d0b8	q15tofp	[c%d] q15tofp FD%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a107ac	0x01905c2c
+647	32	0x60e0fff8	0x60c0d0c0	ftonp	[c%d] ftonp FS%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a1081e	0x01905c44
+648	32	0x60e0fff8	0x60c0d0c8	dtoi	[c%d] dtoi FS%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10890	0x01905c5a
+649	32	0x60e0fff8	0x60c0d0d0	ftoq31	[c%d] ftoq31 FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a10902	0x01905c6f
+650	32	0x60e0fff8	0x60c0d0d8	dtoq31	[c%d] dtoq31 FS%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10974	0x01905c86
+651	32	0x60e0fff8	0x60c0d0e0	ftol	[c%d] ftol FD%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a109e6	0x01905c9d
+652	32	0x60e0fff8	0x60c0d0e8	ftoq63	[c%d] ftoq63 FD%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a10a58	0x01905cb2
+653	32	0x60e0fff8	0x60c0d0f0	dtoq63	[c%d] dtoq63 FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10aca	0x01905cc9
+654	32	0x60e0fff8	0x60c0d0f8	ftoq15p	[c%d] ftoq15p FS%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10b3c	0x01905ce0
+655	32	0x60e0fff8	0x60c0d110	fmul2p	[c%d] fmul2p FS%d,%d	b[2:0], b[20:16], sext(b[28:24])	0x00a10bae	0x01905cf8
+656	32	0x60e0fff8	0x60c0d118	fmul2p	[c%d] fmul2p FD%d,%d	b[2:0], b[20:16], sext(b[28:24])	0x00a10c20	0x01905d0d
+657	32	0x60e0fff8	0x60c0d120	fmax	[c%d] fmax FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a10c92	0x01905d4e
+658	32	0x60e0fff8	0x60c0d128	fmax	[c%d] fmax FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10d04	0x01905d63
+659	32	0x60e0fff8	0x60c0d130	fmin	[c%d] fmin FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a10d76	0x01905dd2
+660	32	0x60e0fff8	0x60c0d138	fmin	[c%d] fmin FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10de8	0x01905de7
+661	32	0x60e0fff8	0x60c0d160	famax	[c%d] famax FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a10e5a	0x01905d78
+662	32	0x60e0fff8	0x60c0d168	famax	[c%d] famax FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10ecc	0x01905d8e
+663	32	0x60e0fff8	0x60c0d170	famin	[c%d] famin FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a10f3e	0x01905dfc
+664	32	0x60e0fff8	0x60c0d178	famin	[c%d] famin FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a10fb0	0x01905e12
+665	32	0x60e0fff8	0x60c0d1a0	famaxa	[c%d] famaxa FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a11022	0x01905da4
+666	32	0x60e0fff8	0x60c0d1a8	famaxa	[c%d] famaxa FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a11094	0x01905dbb
+667	32	0x60e0fff8	0x60c0d1b0	famina	[c%d] famina FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a11106	0x01905e28
+668	32	0x60e0fff8	0x60c0d1d0	fetoz	[c%d] fetoz FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a11178	0x01905d22
+669	32	0x60e0fff8	0x60c0d1b8	famina	[c%d] famina FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a111c8	0x01905e3f
+670	32	0x60e0fff8	0x60c0d1d8	detoz	[c%d] detoz FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a11228	0x01905d38
+671	32	0x60e0ff08	0x60c0d300	fmovp	[c%d] fmovp FS%d:FS%d,R%d,R%d	b[2:0], b[7:4]<<1, b[7:4]<<1+1, b[28:24], b[20:16]	0x00a112be	0x01905e74
+672	32	0x60e0ff08	0x60c0d200	fmovp	[c%d] fmovp R%d:R%d,FS%d,FS%d	b[2:0], b[7:4]<<1, b[7:4]<<1+1, b[28:24], b[20:16]	0x00a11338	0x01905e56
+673	32	0x60e0fff8	0x60c0d800	fmov	[c%d] fmov R%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a113dc	0x01905e92
+674	32	0x7fe0fff8	0x60c0d808	fmov	[c%d] fmov R%d,FPCR	b[2:0], b[20:16]	0x00a11442	0x01905ea6
+675	32	0x60e0fff8	0x60c0d810	fmov	[c%d] fmov FS%d,R%d	b[2:0], b[20:16], b[28:24]	0x00a114ba	0x01905eba
+676	32	0x7fe0fff8	0x60c0d818	fmov	[c%d] fmov FPCR,R%d	b[2:0], b[20:16]	0x00a11520	0x01905ece
+677	32	0x60e0fff8	0x60c0d820	fabs	[c%d] fabs FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a115a4	0x01905ee2
+678	32	0x60e0fff8	0x60c0d828	fabs	[c%d] fabs FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a11616	0x01905ef7
+679	32	0x60e0fff8	0x60c0d830	fneg	[c%d] fneg FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a11688	0x01905f0c
+680	32	0x60e0fff8	0x60c0d840	fmov	[c%d] fmov FS%d,FS%d	b[2:0], b[20:16], b[28:24]	0x00a116fa	0x01905f36
+681	32	0x60e0fff8	0x60c0d838	fneg	[c%d] fneg FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a1174a	0x01905f21
+682	32	0x60e0fff8	0x60c0d848	fmov	[c%d] fmov FD%d,FD%d	b[2:0], b[20:16], b[28:24]	0x00a117aa	0x01905f4b
+683	32	0x60e0f800	0x60e00000	ldbu	[c%d] ldbu R%d,(R%d,%d)	b[2:0], b[20:16], b[28:24], b[10:3]	0x00a1184c	0x01905f60
+684	32	0x60e0f800	0x60e00800	ldb	[c%d] ldb R%d,(R%d,%d)	b[2:0], b[20:16], b[28:24], b[10:3]	0x00a118d6	0x01905f78
+685	32	0x60e0f800	0x60e01000	ldhu	[c%d] ldhu R%d,(R%d,%d)	b[2:0], b[20:16], b[28:24], b[10:3]<<1	0x00a11960	0x01905f8f
+686	32	0x60e0f800	0x60e01800	ldh	[c%d] ldh R%d,(R%d,%d)	b[2:0], b[20:16], b[28:24], b[10:3]<<1	0x00a119ea	0x0190231d
+687	32	0x60e0f800	0x60e02000	ld	[c%d] ld R%d,(R%d,%d)	b[2:0], b[20:16], b[28:24], b[10:3]<<2	0x00a11a74	0x019022f1
+688	32	0x60e0f800	0x60e02800	stb	[c%d] stb (R%d,%d),R%d	b[2:0], b[28:24], b[10:3], b[20:16]	0x00a11afe	0x01905fa7
+689	32	0x60e0f800	0x60e03000	sth	[c%d] sth (R%d,%d),R%d	b[2:0], b[28:24], b[10:3]<<1, b[20:16]	0x00a11b88	0x01902334
+690	32	0x60e0f800	0x60e03800	st	[c%d] st (R%d,%d),R%d	b[2:0], b[28:24], b[10:3]<<2, b[20:16]	0x00a11c12	0x01902307
+691	32	0x60e0f800	0x60e04000	ldbu	[c%d] ldbu R%d,(R%d+)%d	b[2:0], b[20:16], b[28:24], sext(b[10:3])	0x00a11c9c	0x01905fbe
+692	32	0x60e0f800	0x60e04800	ldb	[c%d] ldb R%d,(R%d+)%d	b[2:0], b[20:16], b[28:24], sext(b[10:3])	0x00a11d26	0x01905fd6
+693	32	0x60e0f800	0x60e05000	ldhu	[c%d] ldhu R%d,(R%d+)%d	b[2:0], b[20:16], b[28:24], sext(b[10:3])<<1	0x00a11db0	0x01905fed
+694	32	0x60e0f800	0x60e05800	ldh	[c%d] ldh R%d,(R%d+)%d	b[2:0], b[20:16], b[28:24], sext(b[10:3])<<1	0x00a11e3a	0x01906005
+695	32	0x60e0f800	0x60e06000	ld	[c%d] ld R%d,(R%d+)%d	b[2:0], b[20:16], b[28:24], sext(b[10:3])<<2	0x00a11ec4	0x0190601c
+696	32	0x60e0f800	0x60e07000	sth	[c%d] sth (R%d+)%d,R%d	b[2:0], b[28:24], sext(b[10:3])<<1, b[20:16]	0x00a11f4e	0x01906049
+697	32	0x60e0f800	0x60e06800	stb	[c%d] stb (R%d+)%d,R%d	b[2:0], b[28:24], sext(b[10:3]), b[20:16]	0x00a11fb6	0x01906032
+698	32	0x60e0f800	0x60e07800	st	[c%d] st (R%d+)%d,R%d	b[2:0], b[28:24], sext(b[10:3])<<2, b[20:16]	0x00a1202e	0x01906060
+699	32	0x60e1f800	0x60e08000	ldbp	[c%d] ldbp R%d:R%d,(R%d,%d)	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24], b[10:3]<<1	0x00a120e2	0x01906076
+700	32	0x60e1f800	0x60e08800	ldhp	[c%d] ldhp R%d:R%d,(R%d,%d)	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24], b[10:3]<<2	0x00a12188	0x019060ae
+701	32	0x60e1f800	0x60e09000	ldp	[c%d] ldp R%d:R%d,(R%d,%d)	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24], b[10:3]<<3	0x00a1222c	0x019060e6
+702	32	0x60e1f800	0x60e18800	sthp	[c%d] sthp (R%d,%d),R%d:R%d	b[2:0], b[28:24], b[10:3]<<2, b[20:17]<<1, b[20:17]<<1+1	0x00a122f8	0x019060ca
+703	32	0x60e1f800	0x60e18000	stbp	[c%d] stbp (R%d,%d),R%d:R%d	b[2:0], b[28:24], b[10:3]<<1, b[20:17]<<1, b[20:17]<<1+1	0x00a12378	0x01906092
+704	32	0x60e1f800	0x60e19000	stp	[c%d] stp (R%d,%d),R%d:R%d	b[2:0], b[28:24], b[10:3]<<3, b[20:17]<<1, b[20:17]<<1+1	0x00a12406	0x01906101
+705	32	0x60fff800	0x60e39800	stp	[c%d] stp (R%d,%d),LR:SVR	b[2:0], b[28:24], b[10:3]<<3	0x00a1249a	0x01906136
+706	32	0x60fff800	0x60ff9800	dpref	[c%d] dpref (R%d,%d)	b[2:0], b[28:24], b[10:3]	0x00a124ea	0x01906150
+707	32	0x60fff800	0x60e19800	ldp	[c%d] ldp LR:SVR,(R%d,%d)	b[2:0], b[28:24], b[10:3]<<3	0x00a1254a	0x0190611c
+708	32	0x60e1f800	0x60e0a000	ldbp	[c%d] ldbp R%d:R%d,(R%d+)%d	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24], sext(b[10:3])<<1	0x00a125f2	0x01906165
+709	32	0x60e1f800	0x60e0a800	ldhp	[c%d] ldhp R%d:R%d,(R%d+)%d	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24], sext(b[10:3])<<2	0x00a1269a	0x0190619d
+710	32	0x60e1f800	0x60e0b000	ldp	[c%d] ldp R%d:R%d,(R%d+)%d	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24], sext(b[10:3])<<3	0x00a12740	0x019061d5
+711	32	0x60e1f800	0x60e1a800	sthp	[c%d] sthp (R%d+)%d,R%d:R%d	b[2:0], b[28:24], sext(b[10:3])<<2, b[20:17]<<1, b[20:17]<<1+1	0x00a1280c	0x019061b9
+712	32	0x60e1f800	0x60e1a000	stbp	[c%d] stbp (R%d+)%d,R%d:R%d	b[2:0], b[28:24], sext(b[10:3])<<1, b[20:17]<<1, b[20:17]<<1+1	0x00a1288c	0x01906181
+713	32	0x60e1f800	0x60e1b000	stp	[c%d] stp (R%d+)%d,R%d:R%d	b[2:0], b[28:24], sext(b[10:3])<<3, b[20:17]<<1, b[20:17]<<1+1	0x00a1291a	0x019061f0
+714	32	0x60e0fe00	0x60e0ba00	stbh	[c%d] stbh (R%d+)%d,R%d	b[2:0], b[28:24], sext(b[8:3])<<1, b[20:16]	0x00a129c6	0x01906223
+715	32	0x60e0fe00	0x60e0bc00	ldbuh	[c%d] ldbuh R%d,(R%d+)%d	b[2:0], b[20:16], b[28:24], sext(b[8:3])<<1	0x00a12a2e	0x0190623b
+716	32	0x60e0fe00	0x60e0b800	ldbh	[c%d] ldbh R%d,(R%d+)%d	b[2:0], b[20:16], b[28:24], sext(b[8:3])<<1	0x00a12aa6	0x0190620b
+717	32	0x60e1fe08	0x60e0be08	ldbuhp	[c%d] ldbuhp R%d:R%d,(R%d+)%d	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24], sext(b[8:4])<<2	0x00a12b56	0x0190628e
+718	32	0x60e1fe08	0x60e1be00	stbhp	[c%d] stbhp (R%d+)%d,R%d:R%d	b[2:0], b[28:24], sext(b[8:4])<<2, b[20:17]<<1, b[20:17]<<1+1	0x00a12bde	0x01906271
+719	32	0x60e1fe08	0x60e0be00	ldbhp	[c%d] ldbhp R%d:R%d,(R%d+)%d	b[2:0], b[20:17]<<1, b[20:17]<<1+1, b[28:24], sext(b[8:4])<<2	0x00a12c66	0x01906254
+720	32	0x78e0f800	0x60e0c000	ldbu	[c%d] ldbu R%d,(GP,%d)	b[2:0], b[20:16], (b[26:24]:b[10:3])	0x00a12d1e	0x019062ac
+721	32	0x78e0f800	0x60e0c800	ld	[c%d] ld R%d,(GP,%d)	b[2:0], b[20:16], (b[26:24]:b[10:3])<<2	0x00a12d90	0x0190246f
+722	32	0x78e0f800	0x60e0d000	ldbu	[c%d] ldbu R%d,(SP,%d)	b[2:0], b[20:16], (b[26:24]:b[10:3])	0x00a12e02	0x01906306
+723	32	0x78e0f800	0x60e0d800	ld	[c%d] ld R%d,(SP,%d)	b[2:0], b[20:16], (b[26:24]:b[10:3])<<2	0x00a12e74	0x01902499
+724	32	0x78e0f800	0x68e0c000	ldb	[c%d] ldb R%d,(GP,%d)	b[2:0], b[20:16], (b[26:24]:b[10:3])	0x00a12ee6	0x019062c3
+725	32	0x78e0f800	0x68e0c800	stb	[c%d] stb (GP,%d),R%d	b[2:0], (b[26:24]:b[10:3]), b[20:16]	0x00a12f58	0x019062f0
+726	32	0x78e0f800	0x68e0d000	ldb	[c%d] ldb R%d,(SP,%d)	b[2:0], b[20:16], (b[26:24]:b[10:3])	0x00a12fca	0x0190631d
+727	32	0x78e0f800	0x68e0d800	stb	[c%d] stb (SP,%d),R%d	b[2:0], (b[26:24]:b[10:3]), b[20:16]	0x00a1303c	0x0190634a
+728	32	0x78e0f800	0x70e0c000	ldhu	[c%d] ldhu R%d,(GP,%d)	b[2:0], b[20:16], (b[26:24]:b[10:3])<<1	0x00a130ae	0x019062d9
+729	32	0x78e0f800	0x70e0c800	sth	[c%d] sth (GP,%d),R%d	b[2:0], (b[26:24]:b[10:3])<<1, b[20:16]	0x00a13120	0x0190242d
+730	32	0x78e0f800	0x70e0d000	ldhu	[c%d] ldhu R%d,(SP,%d)	b[2:0], b[20:16], (b[26:24]:b[10:3])<<1	0x00a13192	0x01906333
+731	32	0x78e0f800	0x70e0d800	sth	[c%d] sth (SP,%d),R%d	b[2:0], (b[26:24]:b[10:3])<<1, b[20:16]	0x00a13204	0x01902459
+732	32	0x78e0f800	0x78e0c000	ldh	[c%d] ldh R%d,(GP,%d)	b[2:0], b[20:16], (b[26:24]:b[10:3])<<1	0x00a13276	0x01902417
+733	32	0x78e0f800	0x78e0d000	ldh	[c%d] ldh R%d,(SP,%d)	b[2:0], b[20:16], (b[26:24]:b[10:3])<<1	0x00a132e8	0x01902443
+734	32	0x78e0f800	0x78e0c800	st	[c%d] st (GP,%d),R%d	b[2:0], (b[26:24]:b[10:3])<<2, b[20:16]	0x00a13338	0x01902484
+735	32	0x78e0f800	0x78e0d800	st	[c%d] st (SP,%d),R%d	b[2:0], (b[26:24]:b[10:3])<<2, b[20:16]	0x00a13398	0x019024ae
+736	32	0x78e1f800	0x60e0e000	ldp	[c%d] ldp R%d:R%d,(GP,%d)	b[2:0], b[20:17]<<1, b[20:17]<<1+1, (b[26:24]:b[10:3])<<3	0x00a13444	0x01906360
+737	32	0x78e1f800	0x68e0e000	ldp	[c%d] ldp R%d:R%d,(SP,%d)	b[2:0], b[20:17]<<1, b[20:17]<<1+1, (b[26:24]:b[10:3])<<3	0x00a134cc	0x0190234b
+738	32	0x78e1f800	0x60e1e000	stp	[c%d] stp (GP,%d),R%d:R%d	b[2:0], (b[26:24]:b[10:3])<<3, b[20:17]<<1, b[20:17]<<1+1	0x00a13544	0x0190637a
+739	32	0x78e1f800	0x68e1e000	stp	[c%d] stp (SP,%d),R%d:R%d	b[2:0], (b[26:24]:b[10:3])<<3, b[20:17]<<1, b[20:17]<<1+1	0x00a135ba	0x01902365
+740	32	0x78fff800	0x70e0e000	ldp	[c%d] ldp LR:SVR,(GP,%d)	b[2:0], (b[26:24]:b[10:3])<<3	0x00a13640	0x01906394
+741	32	0x78fff800	0x78e0e000	ldp	[c%d] ldp LR:SVR,(SP,%d)	b[2:0], (b[26:24]:b[10:3])<<3	0x00a1369c	0x019023e5
+742	32	0x78fff800	0x70e1e000	stp	[c%d] stp (GP,%d),LR:SVR	b[2:0], (b[26:24]:b[10:3])<<3	0x00a136d4	0x019063ad
+743	32	0x78fff800	0x78e1e000	stp	[c%d] stp (SP,%d),LR:SVR	b[2:0], (b[26:24]:b[10:3])<<3	0x00a1371c	0x019023fe
+744	32	0x78e0f800	0x78e0e800	wte	[c%d] wte (%d),R%d	b[2:0], (b[26:24]:b[10:3]), b[20:16]	0x00a13794	0x019063d9
+745	32	0x78e0f800	0x70e0e800	rde	[c%d] rde R%d,(%d)	b[2:0], b[20:16], (b[26:24]:b[10:3])	0x00a137f4	0x019063c6
+746	32	0x60e0fff8	0x60e0f000	ldstb	[c%d] ldstb R%d,(R%d)	b[2:0], b[20:16], b[28:24]	0x00a13876	0x019063ec
+747	32	0x60e1fff8	0x60e0f088	cash	[c%d] cash C0:C1,(R%d),R%d:R%d	b[2:0], b[28:24], b[20:17]<<1, b[20:17]<<1+1	0x00a13914	0x01906421
+748	32	0x60e1fff8	0x60e0f090	cas	[c%d] cas C0:C1,(R%d),R%d:R%d	b[2:0], b[28:24], b[20:17]<<1, b[20:17]<<1+1	0x00a1397a	0x01906440
+749	32	0x60e1fff8	0x60e0f080	casb	[c%d] casb C0:C1,(R%d),R%d:R%d	b[2:0], b[28:24], b[20:17]<<1, b[20:17]<<1+1	0x00a139f0	0x01906402
+750	32	0x60e0ff80	0x60e0f180	ldp	[c%d] ldp XD%d,(R%d+)%d	b[2:0], b[20:16], b[28:24], sext(b[6:3])<<3	0x00a13a88	0x01906475
+751	32	0x60e0ff80	0x60e0f100	ld	[c%d] ld FS%d,(R%d+)%d	b[2:0], b[20:16], b[28:24], sext(b[6:3])<<2	0x00a13b00	0x0190645e
+752	32	0x60e0fcc8	0x60e0f448	st	[c%d] st (R%d,%d),FS%d	b[2:0], b[28:24], (b[9:8]:b[5:4])<<2, b[20:16]	0x00a13b9e	0x019064a4
+753	32	0x60e0fcc8	0x60e0f440	ld	[c%d] ld FS%d,(R%d,%d)	b[2:0], b[20:16], b[28:24], (b[9:8]:b[5:4])<<2	0x00a13c16	0x0190648d
+754	32	0x60e0fc88	0x60e0f488	stp	[c%d] stp (R%d,%d),XD%d	b[2:0], b[28:24], (b[9:8]:b[6:4])<<3, b[20:16]	0x00a13cb4	0x019064d3
+755	32	0x60e0fc88	0x60e0f480	ldp	[c%d] ldp XD%d,(R%d,%d)	b[2:0], b[20:16], b[28:24], (b[9:8]:b[6:4])<<3	0x00a13d2c	0x019064bb
+756	32	0x60e0ff80	0x60e0f980	stp	[c%d] stp (R%d+)%d,XD%d	b[2:0], b[28:24], sext(b[6:3])<<3, b[20:16]	0x00a13dc0	0x01906502
+757	32	0x60e0ff80	0x60e0f900	st	[c%d] st (R%d+)%d,FS%d	b[2:0], b[28:24], sext(b[6:3])<<2, b[20:16]	0x00a13e38	0x019064eb

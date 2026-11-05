@@ -1,0 +1,1567 @@
+{
+  "source": "US20040078549A1 instruction figures; generation transfer is an explicit assumption",
+  "policies": {
+    "absvh": {
+      "figures": [
+        301
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "absvw": {
+      "figures": [
+        300
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "addarvw": {
+      "figures": [
+        279
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "addmsk": {
+      "figures": [
+        278
+      ],
+      "effects": [
+        "ReadBitPosition"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "addvh": {
+      "figures": [
+        270
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "addvw": {
+      "figures": [
+        269
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "aslp": {
+      "figures": [
+        442
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "aslpvw": {
+      "figures": [
+        446,
+        447
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "aslvh": {
+      "figures": [
+        427,
+        428
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "aslvw": {
+      "figures": [
+        425,
+        426
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "asrp": {
+      "figures": [
+        448
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "asrpvw": {
+      "figures": [
+        452
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "asrvh": {
+      "figures": [
+        433
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "asrvw": {
+      "figures": [
+        432
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "div": {
+      "figures": [
+        564
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "divu": {
+      "figures": [
+        565
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "extw": {
+      "figures": [
+        481
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "fmachh": {
+      "figures": [
+        536,
+        537
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmachhr": {
+      "figures": [
+        538,
+        539
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmachw": {
+      "figures": [
+        540,
+        541
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmachww": {
+      "figures": [
+        542,
+        543
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmacww": {
+      "figures": [
+        546,
+        547
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmsuhh": {
+      "figures": [
+        552,
+        553
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmsuhhr": {
+      "figures": [
+        554,
+        555
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmsuhw": {
+      "figures": [
+        556,
+        557
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmsuhww": {
+      "figures": [
+        558,
+        559
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmsuww": {
+      "figures": [
+        562,
+        563
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmulhh": {
+      "figures": [
+        523
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmulhhr": {
+      "figures": [
+        524
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmulhw": {
+      "figures": [
+        525
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmulhww": {
+      "figures": [
+        526
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "fmulww": {
+      "figures": [
+        531
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "hmac": {
+      "figures": [
+        532,
+        533
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "hmsu": {
+      "figures": [
+        548,
+        549
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "hmul": {
+      "figures": [
+        521
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "lmac": {
+      "figures": [
+        534,
+        535
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "lmsu": {
+      "figures": [
+        550,
+        551
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "lmul": {
+      "figures": [
+        522
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "lsrp": {
+      "figures": [
+        457
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "mac": {
+      "figures": [
+        544,
+        545
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "mskbrvb": {
+      "figures": [
+        518
+      ],
+      "effects": [
+        "ReadBitPosition"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "mskbrvh": {
+      "figures": [
+        519
+      ],
+      "effects": [
+        "ReadBitPosition"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "msu": {
+      "figures": [
+        560,
+        561
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "mul": {
+      "figures": [
+        527,
+        528
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "mulu": {
+      "figures": [
+        529,
+        530
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "negvh": {
+      "figures": [
+        297
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "negvw": {
+      "figures": [
+        298
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "rndvh": {
+      "figures": [
+        517
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "satw": {
+      "figures": [
+        475
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "submsk": {
+      "figures": [
+        291
+      ],
+      "effects": [
+        "ReadBitPosition"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "subvh": {
+      "figures": [
+        289
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "subvw": {
+      "figures": [
+        288
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vabshvh": {
+      "figures": [
+        607
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vabssumb": {
+      "figures": [
+        682
+      ],
+      "effects": [
+        "ReadVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vaddhvc": {
+      "figures": [
+        581
+      ],
+      "effects": [
+        "ReadVectorCondition2"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vaddhvh": {
+      "figures": [
+        574
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vaddrhvc": {
+      "figures": [
+        582
+      ],
+      "effects": [
+        "ReadVectorCondition2"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "valn": {
+      "figures": [
+        486
+      ],
+      "effects": [
+        "ReadAlignment"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "valnvc1": {
+      "figures": [
+        490
+      ],
+      "effects": [
+        "ReadAlignment",
+        "ReadVectorCondition0"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "valnvc2": {
+      "figures": [
+        491
+      ],
+      "effects": [
+        "ReadAlignment",
+        "ReadVectorCondition0"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "valnvc3": {
+      "figures": [
+        492
+      ],
+      "effects": [
+        "ReadAlignment",
+        "ReadVectorCondition0"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "valnvc4": {
+      "figures": [
+        493
+      ],
+      "effects": [
+        "ReadAlignment",
+        "ReadVectorCondition0"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vasl": {
+      "figures": [
+        665
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "vaslvh": {
+      "figures": [
+        642,
+        643
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vaslvw": {
+      "figures": [
+        667,
+        668
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "vasr": {
+      "figures": [
+        669
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "vasrvh": {
+      "figures": [
+        645
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vasrvw": {
+      "figures": [
+        671
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "vasubb": {
+      "figures": [
+        608
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmpeqb": {
+      "figures": [
+        634
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmpeqh": {
+      "figures": [
+        628
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmpgeb": {
+      "figures": [
+        638
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmpgeh": {
+      "figures": [
+        632
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmpgtb": {
+      "figures": [
+        636
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmpgth": {
+      "figures": [
+        630
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmpleb": {
+      "figures": [
+        637
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmpleh": {
+      "figures": [
+        631
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmpltb": {
+      "figures": [
+        639
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmplth": {
+      "figures": [
+        633
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmpneb": {
+      "figures": [
+        635
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vcmpneh": {
+      "figures": [
+        629
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vexth": {
+      "figures": [
+        512
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "vfmach": {
+      "figures": [
+        708,
+        709
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vfmachr": {
+      "figures": [
+        716,
+        717
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vfmacw": {
+      "figures": [
+        724
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vfmsuh": {
+      "figures": [
+        737,
+        738
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vfmsuw": {
+      "figures": [
+        745
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vfmulh": {
+      "figures": [
+        687
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vfmulhr": {
+      "figures": [
+        691
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vfmulw": {
+      "figures": [
+        695
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhaddhvh": {
+      "figures": [
+        576
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vhfmach": {
+      "figures": [
+        712,
+        713
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhfmachr": {
+      "figures": [
+        720,
+        721
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhfmacw": {
+      "figures": [
+        726
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhfmsuh": {
+      "figures": [
+        741,
+        742
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhfmsuw": {
+      "figures": [
+        747
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhfmulh": {
+      "figures": [
+        689
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhfmulhr": {
+      "figures": [
+        693
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhfmulw": {
+      "figures": [
+        697
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhmac": {
+      "figures": [
+        704,
+        705
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhmsu": {
+      "figures": [
+        733,
+        734
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhmul": {
+      "figures": [
+        685
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vhsubhvh": {
+      "figures": [
+        593
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vladdhvh": {
+      "figures": [
+        577
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vlfmach": {
+      "figures": [
+        714,
+        715
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vlfmachr": {
+      "figures": [
+        722,
+        723
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vlfmacw": {
+      "figures": [
+        727
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vlfmsuh": {
+      "figures": [
+        743,
+        744
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vlfmsuw": {
+      "figures": [
+        748
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vlfmulh": {
+      "figures": [
+        690
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vlfmulhr": {
+      "figures": [
+        694
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vlfmulw": {
+      "figures": [
+        698
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vlmac": {
+      "figures": [
+        706,
+        707
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vlmsu": {
+      "figures": [
+        735,
+        736
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vlmul": {
+      "figures": [
+        686
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vlsr": {
+      "figures": [
+        674
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "vlsubhvh": {
+      "figures": [
+        594
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vmac": {
+      "figures": [
+        700,
+        701
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vmovt": {
+      "figures": [
+        615
+      ],
+      "effects": [
+        "ReadVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vmsu": {
+      "figures": [
+        729,
+        730
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vmul": {
+      "figures": [
+        683
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vneghvh": {
+      "figures": [
+        605
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vpfmachww": {
+      "figures": [
+        728
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vpfmulhww": {
+      "figures": [
+        699
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vrndvh": {
+      "figures": [
+        681
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vsath": {
+      "figures": [
+        676
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": false
+    },
+    "vscmpeqb": {
+      "figures": [
+        616
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vscmpeqh": {
+      "figures": [
+        622
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vscmpgeb": {
+      "figures": [
+        620
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vscmpgeh": {
+      "figures": [
+        626
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vscmpgtb": {
+      "figures": [
+        618
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vscmpgth": {
+      "figures": [
+        624
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vscmpleb": {
+      "figures": [
+        619
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vscmpleh": {
+      "figures": [
+        625
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vscmpltb": {
+      "figures": [
+        621
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vscmplth": {
+      "figures": [
+        627
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vscmpneb": {
+      "figures": [
+        617
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vscmpneh": {
+      "figures": [
+        623
+      ],
+      "effects": [
+        "WriteVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vsel": {
+      "figures": [
+        614
+      ],
+      "effects": [
+        "ReadVectorConditions"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vsubhvh": {
+      "figures": [
+        591
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vxaddhvh": {
+      "figures": [
+        575
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    },
+    "vxfmach": {
+      "figures": [
+        710,
+        711
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vxfmachr": {
+      "figures": [
+        718,
+        719
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vxfmacw": {
+      "figures": [
+        725
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vxfmsuh": {
+      "figures": [
+        739,
+        740
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vxfmsuw": {
+      "figures": [
+        746
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vxfmulh": {
+      "figures": [
+        688
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vxfmulhr": {
+      "figures": [
+        692
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vxfmulw": {
+      "figures": [
+        696
+      ],
+      "effects": [
+        "ReadFixedPointMode",
+        "StickyOverflow"
+      ],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vxmac": {
+      "figures": [
+        702,
+        703
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vxmsu": {
+      "figures": [
+        731,
+        732
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vxmul": {
+      "figures": [
+        684
+      ],
+      "effects": [],
+      "two_dest": true,
+      "discard_special_dest": true
+    },
+    "vxsubhvh": {
+      "figures": [
+        592
+      ],
+      "effects": [
+        "StickyOverflow"
+      ],
+      "two_dest": false,
+      "discard_special_dest": false
+    }
+  }
+}

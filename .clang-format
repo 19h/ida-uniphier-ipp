@@ -1,0 +1,64 @@
+# Hex-Rays house style, widened to a 4-space indent and 100 columns.
+#
+# Format with:
+#   find include src tests \( -name '*.cpp' -o -name '*.hpp' \) | xargs clang-format -i
+#
+# The generated table (src/decoder/v8_rules.inc) is not matched by that glob.
+---
+Language: Cpp
+Standard: c++17
+BasedOnStyle: LLVM
+
+# Indentation.
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ContinuationIndentWidth: 4
+AccessModifierOffset: -4
+IndentCaseLabels: true
+NamespaceIndentation: None
+FixNamespaceComments: true
+
+# Layout.
+ColumnLimit: 100
+BreakBeforeBraces: Allman
+PointerAlignment: Right
+ReferenceAlignment: Pointer
+SpaceAfterTemplateKeyword: false
+BreakTemplateDeclarations: Yes
+MaxEmptyLinesToKeep: 1
+KeepEmptyLines:
+  AtStartOfBlock: false
+  AtStartOfFile: false
+
+# `if ( condition )`, while keeping calls as `call(argument)`.
+SpacesInParens: Custom
+SpacesInParensOptions:
+  InConditionalStatements: true
+
+# One statement per line. Accessors and empty bodies may stay on one line.
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortLambdasOnASingleLine: Inline
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+BinPackArguments: true
+BinPackParameters: BinPack
+
+# Long conditions break before each operator.
+BreakBeforeBinaryOperators: NonAssignment
+BreakBinaryOperations: RespectPrecedence
+BreakBeforeTernaryOperators: true
+AlignOperands: DontAlign
+AlignAfterOpenBracket: Align
+
+# Includes are sorted within their own groups: standard library, then the IDA
+# SDK with <ida.hpp> first, then project headers. Groups are never merged.
+IncludeBlocks: Preserve
+SortIncludes:
+  Enabled: true
+  IgnoreCase: false
